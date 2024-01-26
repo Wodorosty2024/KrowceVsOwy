@@ -23,13 +23,9 @@ public class FileLevelModificatorProvider : BaseLevelModificator
         return json;
     }
 
-    public override void SaveLevelElements(List<DynamicallyLoadedLevelElement> elements)
+    public override void SaveLevelElements(List<MapElementModel> elements)
     {   
-        var json = JsonConvert.SerializeObject(elements.Select(x => new MapElementModel() {
-            key = x.key,
-            x = x.transform.position.x,
-            y = x.transform.position.y
-        }).ToList());
+        var json = JsonConvert.SerializeObject(elements);
         File.WriteAllText(FullPath, json);
     }
 }
