@@ -7,6 +7,10 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
 
     public MapElementType mapElementType;
     public string key;
+
+    public string name;
+    public string description;
+
     public string userName;
     public string userComment;
 

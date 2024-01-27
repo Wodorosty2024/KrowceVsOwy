@@ -71,4 +71,9 @@ public class ApiLevelModificatorProvider : BaseLevelModificator
             Debug.LogError(e.Message);
         }
     }
+
+    public override void SaveNewElement(MapElementModel model)
+    {
+        
+    }
 }

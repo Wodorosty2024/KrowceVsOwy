@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class GameManager : MonoBehaviour
 
     public List<MapElementModel> levelConfig = new List<MapElementModel>();
     List<GameObject> spawnedLanes = new List<GameObject>();
+
+    public GameObject previewObject;
+    public bool isConfirmed;
 
     void Awake()
     {
@@ -37,6 +41,13 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (previewObject != null && !isConfirmed)
+        {
+            previewObject.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            var bounds = PlayerController.instance.playableArea.bounds;
+            previewObject.transform.position = new Vector3(previewObject.transform.position.x, Mathf.Clamp(previewObject.transform.position.y, bounds.center.y - bounds.extents.y, bounds.center.y + bounds.extents.y), 0);
+        }
+
         foreach (var fragment in spawnedLanes)
         {
             fragment.transform.position -= Vector3.right*PlayerController.instance.currentHorizontalSpeed;
@@ -71,20 +82,6 @@ public class GameManager : MonoBehaviour
             spawnedLanes.Add(obj);
             return obj;
     }
-
-    public void SpawnElement()
-    {
-        var randObj = dynamicElementsPrefabs[Random.Range(0, dynamicElementsPrefabs.Count)];
-        var pos = transform.position + new Vector3(Random.Range(-5,5), Random.Range(-5,5));
-        Instantiate(randObj, pos, Quaternion.identity);
-        SaveLevelElements();
-    }
-
-    public void DeleteAll()
-    {
-        levelModificatorProvider.SaveLevelElements(new());
-    }
-
     public void LoadLevelElements()
     {
         levelConfig = levelModificatorProvider.LoadLevelElements();
@@ -99,5 +96,43 @@ public class GameManager : MonoBehaviour
             x = x.transform.position.x,
             y = x.transform.position.y
         }).ToList());
+    }
+
+    public void CreatePreviewElement(string key)
+    {
+        var el = dynamicElementsPrefabs.FirstOrDefault(x => x.key == key);
+        previewObject = Instantiate(el.gameObject, Vector3.zero, Quaternion.identity);        
+        previewObject.GetComponent<DynamicallyLoadedLevelElement>().enabled=false;
+        previewObject.GetComponent<Collider2D>().enabled=false;        
+    }
+
+    public void ConfirmPreviewElement()
+    {
+        isConfirmed=true;
+        GameUI.instance.ShowMessageScreen();
+    }
+
+    public void SendPreviewElement(string sentence)
+    {
+        var dist = previewObject.transform.position-PlayerController.instance.transform.position;
+        MapElementModel model = new MapElementModel()
+        {
+            key = previewObject.GetComponent<DynamicallyLoadedLevelElement>().key,
+            x = PlayerController.instance.accumulatedDistance + dist.x,
+            y = previewObject.transform.position.y,
+            sentence=sentence
+        };
+        levelModificatorProvider.SaveNewElement(model);
+        previewObject = null;
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(1);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
     }
 }
