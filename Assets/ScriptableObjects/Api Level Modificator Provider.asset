@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f547c6dd1d59d4081812f18351f872bb, type: 3}
   m_Name: Api Level Modificator Provider
   m_EditorClassIdentifier: 
-  baseUrl: https://krowce.bieda.it
+  baseUrl: https://krowce.bieda.it/api
