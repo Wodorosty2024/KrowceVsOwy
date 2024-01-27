@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7020bb52-37ca-4924-8d7d-d7753ad30fe9}">
+		<property name="assetPath">
+			<value>Background/HGW_2024_theme.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>37.851428571428571</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a40c17b7-10cf-4a23-97e9-a3ed689ea442}</destination>
+		</relationship>
+	</object>
+</objects>
