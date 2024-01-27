@@ -14,6 +14,8 @@ public class ApiLevelModificatorProvider : BaseLevelModificator
     string GetMapElementsEndpoint => $"{baseUrl}/test";
     string PostMapElementsEndpoint => $"{baseUrl}/test";
 
+    float timeoutLimit = 5;
+
     string GetSessionsEndpoint => $"{baseUrl}/sessions/?format=json";
     public override List<MapElementModel> LoadLevelElements()
     {
@@ -38,7 +40,10 @@ public class ApiLevelModificatorProvider : BaseLevelModificator
         try
         {
             var result = UnityWebRequest.Get(GetSessionsEndpoint).SendWebRequest();
-            while (!result.isDone) { }
+            var time = Time.time;
+            while (!result.isDone) { 
+                if (Time.time -time > timeoutLimit) return new();
+            }
             var json = JsonConvert.DeserializeObject<SessionCollection>(result.webRequest.downloadHandler.text);
             return json.sessions;
         }
@@ -56,7 +61,10 @@ public class ApiLevelModificatorProvider : BaseLevelModificator
         try
         {
             var result = UnityWebRequest.Post(PostMapElementsEndpoint, json, "application/json");
-            while (!result.isDone) {}
+            var time = Time.time;
+            while (!result.isDone) {
+                if (Time.time-time > timeoutLimit) return;
+            }
         }
         catch (Exception e)
         {

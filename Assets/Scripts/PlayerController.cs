@@ -45,24 +45,27 @@ public class PlayerController : MonoBehaviour
         {
             currentHorizontalSpeed=Mathf.Clamp(currentHorizontalSpeed-deathDrag*Time.deltaTime, 0, currentHorizontalSpeed);
             var t = 1-(currentHorizontalSpeed/deathStartVelocity);
-            transform.position = new Vector3(transform.position.x, deathStartY + deathScaleCurve.Evaluate(t), transform.position.z);
-            transform.localScale = Vector3.one + Vector3.one * t;
+            // transform.position = new Vector3(transform.position.x, deathStartY + deathScaleCurve.Evaluate(t), transform.position.z);
+            // transform.localScale = Vector3.one + Vector3.one * t;
             // rootBone.angularDrag=0;//deathDrag*100;
-            // rootBone.angularDrag=360*(1-currentHorizontalSpeed);                
+            if (currentHorizontalSpeed != 0)
+            {
+                rootBone.MovePosition(new Vector2(0, deathStartY+deathScaleCurve.Evaluate(t)));
+            }
                 foreach (var rb in rigidbody2Ds)
                 {
-                    if (currentHorizontalSpeed == 0)
-                    {
-                        rb.isKinematic=true;
-                        rb.velocity=Vector2.zero;
-                        rb.angularVelocity=0;
-                    }
-                    else
-                    {
-                    rb.angularDrag=(1-currentHorizontalSpeed);
-                    rb.drag = 1-currentHorizontalSpeed;
-                    }
+                    if (rb != rootBone)
+                        rb.gravityScale = deathScaleCurve.Evaluate(t); // currentHorizontalSpeed == 0 ? 0 : 1;
                 }
+            rootBone.angularDrag=360*(1-currentHorizontalSpeed);                
+            if (currentHorizontalSpeed < .3f)
+            {
+                foreach (var rb in rigidbody2Ds)
+                {
+                    rb.drag = 10;
+                    rb.angularDrag=10;
+                }
+            }
             return;
         }
 
@@ -96,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
         isDead = true;
         deathStartVelocity=currentHorizontalSpeed;
-        deathStartY = transform.position.y;
+        deathStartY = rootBone.position.y;
         // currentHorizontalSpeed=0;
         GetComponent<BoxCollider2D>().enabled=false;
         if (ragdoll)
@@ -108,7 +111,8 @@ public class PlayerController : MonoBehaviour
             //     // rb.AddTorque(dist);
             //     rb.AddForce(currentHorizontalSpeed * Vector2.right * Random.Range(0.5f,1));
             // }
-            rootBone.AddTorque(-360*currentHorizontalSpeed, ForceMode2D.Impulse);
+            rootBone.AddTorque(-360*currentHorizontalSpeed*10, ForceMode2D.Impulse);
+            rootBone.AddForce(Vector2.up*10, ForceMode2D.Impulse);
         }
     }
 
@@ -132,7 +136,7 @@ public class PlayerController : MonoBehaviour
     {
         List<Rigidbody2D> rbs = new List<Rigidbody2D>();
         Queue<Transform> children = new Queue<Transform>();
-        children.Enqueue(transform);
+        children.Enqueue(rootBone.transform);
         while (children.Count > 0)
         {
             var c = children.Dequeue();
