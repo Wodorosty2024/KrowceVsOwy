@@ -387,6 +387,7 @@ GameObject:
   - component: {fileID: 141153139}
   - component: {fileID: 141153140}
   - component: {fileID: 141153141}
+  - component: {fileID: 141153142}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -403,7 +404,7 @@ Transform:
   m_GameObject: {fileID: 141153135}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -432,6 +433,7 @@ MonoBehaviour:
   accumulatedDistance: 0
   isInAir: 0
   isDead: 0
+  isRagdoll: 0
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -501,6 +503,8 @@ MonoBehaviour:
   playableArea: {fileID: 1648316309}
   rootBone: {fileID: 40031526}
   rigidbody2Ds: []
+  health: 1
+  animator: {fileID: 141153142}
   dust: {fileID: 1154890450}
 --- !u!114 &141153139
 MonoBehaviour:
@@ -644,7 +648,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1.2}
+  m_Offset: {x: -0.29125863, y: 0.30491292}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -655,7 +659,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5, y: 2.5}
+  m_Size: {x: 1.7808641, y: 0.70982575}
   m_EdgeRadius: 0
 --- !u!50 &141153141
 Rigidbody2D:
@@ -684,6 +688,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!95 &141153142
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141153135}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 30380abf771cd449fa1aaa603654f0dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &164852992 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5071694671504690919, guid: f64d017e434194a44935d203d00b1bd1, type: 3}
@@ -1780,10 +1805,10 @@ MonoBehaviour:
   cameraBoundsMultiplier: 2
   levelModificatorProvider: {fileID: 11400000, guid: e264610902c324ca08128cf3fcd1e3e1, type: 2}
   dynamicElementsPrefabs:
-  - {fileID: 6354655763690845058, guid: 244dfd4434f97467a8449435e2cd6da9, type: 3}
-  - {fileID: 6354655763690845058, guid: 5b067cedc59654ccbbec50f2ea15f4f7, type: 3}
-  - {fileID: 6354655763690845058, guid: 145311501037148b3a82d569b84458ad, type: 3}
-  - {fileID: 3408117330686945217, guid: e48127bcb4cd24141ab9c4d232218010, type: 3}
+  - {fileID: 4152601668903070351, guid: 145311501037148b3a82d569b84458ad, type: 3}
+  - {fileID: 4164275861691977429, guid: 5b067cedc59654ccbbec50f2ea15f4f7, type: 3}
+  - {fileID: 4897533150784146736, guid: 244dfd4434f97467a8449435e2cd6da9, type: 3}
+  - {fileID: 7395613054020533878, guid: e48127bcb4cd24141ab9c4d232218010, type: 3}
   - {fileID: 3408117330686945217, guid: c08999afdb1f24d8dbf600b568a2212f, type: 3}
   - {fileID: 3408117330686945217, guid: 767c59d032c534c26b8ded4201be88b1, type: 3}
   - {fileID: 8996767233989301115, guid: 345d16e5d0144405fa9954e59a45700e, type: 3}
@@ -3285,7 +3310,7 @@ Transform:
   m_GameObject: {fileID: 1058889046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -11}
+  m_LocalPosition: {x: 0, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5855,7 +5880,7 @@ Transform:
   m_GameObject: {fileID: 1976277733}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -11}
+  m_LocalPosition: {x: 0, y: 0, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

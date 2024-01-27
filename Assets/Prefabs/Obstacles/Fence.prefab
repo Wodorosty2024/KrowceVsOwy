@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -93895037
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -8557415680811534457, guid: 9a2fe295c16df449b9626beb867fcd9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103,6 +103,18 @@ PrefabInstance:
     - target: {fileID: 5344571816457494887, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: m_SortingLayerID
       value: -93895037
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -158,6 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5344571816457494887, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+    - {fileID: 2548978721567832819, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
@@ -190,3 +203,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bf75bdb76d534f9ba97e777476bb47d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowRandomGeneration: 1
+  mapElementType: 0
+  key: fence
+  userName: 
+  userComment: 
+  fenceRenderer: {fileID: 906463050859574314}
+  brokenFenceSprite: {fileID: 0}

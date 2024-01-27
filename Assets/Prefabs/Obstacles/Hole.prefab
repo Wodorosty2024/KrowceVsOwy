@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -93895037
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -5158346094209579130, guid: 9711b4bf3deda4b3b8025de0f19a789a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -117,6 +117,18 @@ PrefabInstance:
       value: -93895037
       objectReference: {fileID: 0}
     - target: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.595362
       objectReference: {fileID: 0}
@@ -158,6 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5344571816457494887, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+    - {fileID: 2548978721567832819, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
@@ -166,7 +179,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4152601668903070351}
+      addedObject: {fileID: 4164275861691977429}
   m_SourcePrefab: {fileID: 100100000, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
 --- !u!4 &3913845275762727526 stripped
 Transform:
@@ -178,7 +191,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
   m_PrefabInstance: {fileID: 8894485138691983729}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4152601668903070351
+--- !u!114 &4164275861691977429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -187,6 +200,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5129114984942539958}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf75bdb76d534f9ba97e777476bb47d, type: 3}
+  m_Script: {fileID: 11500000, guid: 88e37c3380aeb4fbd91d3008633793bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allowRandomGeneration: 1
+  mapElementType: 0
+  key: hole
+  userName: 
+  userComment: 

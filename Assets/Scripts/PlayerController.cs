@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float accumulatedDistance = 0;
     public bool isInAir = false;
     public bool isDead = false;
+    public bool isRagdoll = false;
     public AnimationCurve jumpCurve;
     public AnimationCurve deathScaleCurve;
 
@@ -25,7 +26,10 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rootBone;
     public List<Rigidbody2D> rigidbody2Ds;
 
-    public ParticleSystem dust; 
+    public int health = 1;
+
+    public Animator animator;
+    public ParticleSystem dust;
 
     // Start is called before the first frame update
     void Start()
@@ -41,30 +45,34 @@ public class PlayerController : MonoBehaviour
     float deathStartY;
     void Update()
     {
-        if (isDead) 
+        if (isDead)
         {
-            currentHorizontalSpeed=Mathf.Clamp(currentHorizontalSpeed-deathDrag*Time.deltaTime, 0, currentHorizontalSpeed);
-            var t = 1-(currentHorizontalSpeed/deathStartVelocity);
-            // transform.position = new Vector3(transform.position.x, deathStartY + deathScaleCurve.Evaluate(t), transform.position.z);
-            // transform.localScale = Vector3.one + Vector3.one * t;
-            // rootBone.angularDrag=0;//deathDrag*100;
-            if (currentHorizontalSpeed != 0)
+            if (isRagdoll)
             {
-                rootBone.MovePosition(new Vector2(0, deathStartY+deathScaleCurve.Evaluate(t)));
-            }
+                currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed - deathDrag * Time.deltaTime, 0, currentHorizontalSpeed);
+                var t = 1 - (currentHorizontalSpeed / deathStartVelocity);
+                if (currentHorizontalSpeed != 0)
+                {
+                    rootBone.MovePosition(new Vector2(0, deathStartY + deathScaleCurve.Evaluate(t)));
+                }
                 foreach (var rb in rigidbody2Ds)
                 {
                     if (rb != rootBone)
                         rb.gravityScale = deathScaleCurve.Evaluate(t); // currentHorizontalSpeed == 0 ? 0 : 1;
                 }
-            rootBone.angularDrag=360*(1-currentHorizontalSpeed);                
-            if (currentHorizontalSpeed < .3f)
-            {
-                foreach (var rb in rigidbody2Ds)
+                rootBone.angularDrag = 360 * (1 - currentHorizontalSpeed);
+                if (currentHorizontalSpeed < .3f)
                 {
-                    rb.drag = 10;
-                    rb.angularDrag=10;
+                    foreach (var rb in rigidbody2Ds)
+                    {
+                        rb.drag = 10;
+                        rb.angularDrag = 10;
+                    }
                 }
+            }
+            else
+            {
+                currentHorizontalSpeed=0;
             }
             return;
         }
@@ -72,16 +80,17 @@ public class PlayerController : MonoBehaviour
         dust.Play();
         currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed + (movementDirection.x * Time.deltaTime), movementSpeedRange.x, movementSpeedRange.y);
         var desiredPosition = transform.position + new Vector3(0, movementDirection.y * constantVerticalSpeed * Time.deltaTime);
+        animator.SetBool(AnimatorConstants.inAir, isInAir);
         if (isInAir)
         {
-            var t = Time.time-jumpStartTime;
+            var t = Time.time - jumpStartTime;
             var v = jumpCurve.Evaluate(t);
-            transform.position = new Vector3(0, jumpStartY+v);
-            if (t > jumpCurve.keys[jumpCurve.length-1].time)
+            transform.position = new Vector3(0, jumpStartY + v);
+            if (t > jumpCurve.keys[jumpCurve.length - 1].time)
             {
-                isInAir=false;
-                transform.position = Vector2.up*jumpStartY;
-            }                
+                isInAir = false;
+                transform.position = Vector2.up * jumpStartY;
+            }
         }
         else
         {
@@ -98,10 +107,10 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
-        deathStartVelocity=currentHorizontalSpeed;
+        deathStartVelocity = currentHorizontalSpeed;
         deathStartY = rootBone.position.y;
         // currentHorizontalSpeed=0;
-        GetComponent<BoxCollider2D>().enabled=false;
+        GetComponent<BoxCollider2D>().enabled = false;
         if (ragdoll)
         {
             ToggleRagdoll(true);
@@ -111,8 +120,8 @@ public class PlayerController : MonoBehaviour
             //     // rb.AddTorque(dist);
             //     rb.AddForce(currentHorizontalSpeed * Vector2.right * Random.Range(0.5f,1));
             // }
-            rootBone.AddTorque(-360*currentHorizontalSpeed*10, ForceMode2D.Impulse);
-            rootBone.AddForce(Vector2.up*10, ForceMode2D.Impulse);
+            rootBone.AddTorque(-360 * currentHorizontalSpeed * 10, ForceMode2D.Impulse);
+            rootBone.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
         }
     }
 
@@ -125,10 +134,10 @@ public class PlayerController : MonoBehaviour
     {
         var value = context.ReadValueAsButton();
         if (value && !isInAir)
-        {            
-            isInAir=true;
-            jumpStartTime=Time.time;
-            jumpStartY=transform.position.y;
+        {
+            isInAir = true;
+            jumpStartTime = Time.time;
+            jumpStartY = transform.position.y;
         }
     }
 
@@ -147,7 +156,7 @@ public class PlayerController : MonoBehaviour
                 children.Enqueue(child);
             }
         }
-        return rbs;        
+        return rbs;
     }
 
     public void ToggleRagdoll(bool ragdoll)
@@ -156,5 +165,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.isKinematic = !ragdoll;
         }
+        isRagdoll = ragdoll;
+        animator.enabled=!isRagdoll;
     }
 }
