@@ -1577,7 +1577,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.79518855, y: 0.000000014668329}
+  m_ConnectedAnchor: {x: 0.7951887, y: -0.00000004400498}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -2433,7 +2433,6 @@ GameObject:
   m_Component:
   - component: {fileID: 535045735}
   - component: {fileID: 535045734}
-  - component: {fileID: 535045736}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2486,32 +2485,6 @@ Transform:
   - {fileID: 804729734}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &535045736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 535045733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c9b0da35b26e5a4caacaa33ab47d97e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundMusicEvent:
-    Guid:
-      Data1: -30219835
-      Data2: 1104269288
-      Data3: 842894506
-      Data4: 254851729
-    Path: event:/BackgroundMusic
-  poopSound:
-    Guid:
-      Data1: 78696995
-      Data2: 1119054108
-      Data3: -2032828767
-      Data4: -2001245787
-    Path: event:/Fly
 --- !u!1 &571003333 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7835905384471727094, guid: f64d017e434194a44935d203d00b1bd1, type: 3}
@@ -6011,6 +5984,64 @@ CapsuleCollider2D:
   m_Offset: {x: 0.3, y: 0}
   m_Size: {x: 0.8, y: 0.3}
   m_Direction: 1
+--- !u!1 &1373456175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1373456177}
+  - component: {fileID: 1373456176}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1373456176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373456175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9b0da35b26e5a4caacaa33ab47d97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusicEvent:
+    Guid:
+      Data1: -30219835
+      Data2: 1104269288
+      Data3: 842894506
+      Data4: 254851729
+    Path: event:/BackgroundMusic
+  poopSound:
+    Guid:
+      Data1: 78696995
+      Data2: 1119054108
+      Data3: -2032828767
+      Data4: -2001245787
+    Path: event:/Fly
+--- !u!4 &1373456177
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373456175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.325017, y: 1.0322745, z: -1.0203767}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1431211894
 GameObject:
   m_ObjectHideFlags: 0
@@ -8135,7 +8166,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.7137798, y: -0.00000022351733}
+  m_ConnectedAnchor: {x: 0.71377987, y: -0.00000016391272}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -9063,7 +9094,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0.72263706, y: -0.00000022351736}
+  m_ConnectedAnchor: {x: 0.72263706, y: -0.00000011920926}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -9655,3 +9686,4 @@ SceneRoots:
   - {fileID: 1648316310}
   - {fileID: 1076858208}
   - {fileID: 1983607025}
+  - {fileID: 1373456177}
