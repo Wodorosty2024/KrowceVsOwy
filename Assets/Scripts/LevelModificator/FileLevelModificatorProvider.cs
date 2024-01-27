@@ -10,8 +10,10 @@ public class FileLevelModificatorProvider : BaseLevelModificator
     public string filename = "level.json";
 
     string FullPath => $"{Application.persistentDataPath}/{filename}";
+
     public override List<MapElementModel> LoadLevelElements()
     {
+        Debug.Log(FullPath);
         if (!File.Exists(FullPath))
         {
             Debug.LogError("File doesn't exists");
