@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{87004f25-a1e3-4ae4-b4c1-f5842e070b82}">
 		<property name="name">
-			<value>PlayerFootsteps</value>
+			<value>PlayerFootstepsSlow</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -67,6 +67,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{52047abe-0868-42c4-9a45-75a9a618014c}">
+		<property name="volume">
+			<value>10</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{c7d04296-11fa-43d8-8e98-126612ac751c}</destination>
 		</relationship>
@@ -80,6 +83,9 @@
 	<object class="MultiSound" id="{14b42061-e8c1-4d5a-9094-d09d82c94557}">
 		<property name="length">
 			<value>0.54000000000000004</value>
+		</property>
+		<property name="delayType">
+			<value>0</value>
 		</property>
 		<property name="pitch">
 			<value>1</value>
