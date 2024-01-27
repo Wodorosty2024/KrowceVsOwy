@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
             var rend = obj.GetComponentInChildren<SpriteRenderer>();
             rend.color = new Color(Random.Range(0,1.0f), Random.Range(0,1.0f), 1,1);
             obj.transform.position = last == null ? Vector3.zero : new Vector3(last.bounds.center.x + last.bounds.extents.x + rend.bounds.extents.x, 0,0);
-            obj.GetComponent<Lane>().Prepare();
+            obj.GetComponent<Lane>().Prepare(last == null);
             spawnedLanes.Add(obj);
             return obj;
     }

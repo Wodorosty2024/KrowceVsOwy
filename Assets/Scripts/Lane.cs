@@ -12,7 +12,7 @@ public class Lane : MonoBehaviour
         
     }
 
-    public void Prepare()
+    public void Prepare(bool initialLane=false)
     {
         obstaclesContainer.RemoveChildren();
 
@@ -29,7 +29,8 @@ public class Lane : MonoBehaviour
             }
             var obj = Instantiate(refObj, new Vector3(element.x, element.y, -1), Quaternion.identity, obstaclesContainer);
         }
-        SpawnRandomObstacles();
+        if (!initialLane)        
+            SpawnRandomObstacles();
     }
 
     void SpawnRandomObstacles()

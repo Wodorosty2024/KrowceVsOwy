@@ -15,6 +15,10 @@ public class GameUI : MonoBehaviour
     public Transform helperContainer;
     public GameObject itemPrefab;
 
+    public GameObject runInfoContainer;
+    public GameObject runInfoMilkContainer;
+    public TextMeshProUGUI runInfoDistance;
+    public TextMeshProUGUI runInfoMilkCounter;
     public GameObject gameOverPanel;
     public GameObject objectPlacementPanel;
     public GameObject messagePanel;
@@ -31,12 +35,15 @@ public class GameUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
+        runInfoDistance.text = PlayerController.instance.accumulatedDistance.ToString("F2");
+        runInfoMilkContainer.SetActive(PlayerController.instance.health > 1);
+        runInfoMilkCounter.text = PlayerController.instance.health.ToString();
+    }  
 
     public void ShowGameOverPanel()
     {
         gameOverPanel.SetActive(true);
+        runInfoContainer.SetActive(false);
     }
 
     public void ShowMessageScreen()

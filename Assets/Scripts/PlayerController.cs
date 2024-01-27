@@ -101,6 +101,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            animator.SetFloat(AnimatorConstants.runSpeed, currentHorizontalSpeed);
             if (playableArea.OverlapPoint(desiredPosition))
             {
                 transform.position = desiredPosition;
