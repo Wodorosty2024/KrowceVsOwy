@@ -8,7 +8,7 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
     public MapElementType mapElementType;
     public string key;
 
-    public string name;
+    public string ui_name;
     public string description;
 
     public string userName;
@@ -25,6 +25,7 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
 
     public virtual void HandleCollision(PlayerController pc)
     {
+        PlayerController.instance.encounteredElements.Add((PlayerController.instance.accumulatedDistance, this));
     }
 
     void OnCollisionEnter2D(Collision2D col)

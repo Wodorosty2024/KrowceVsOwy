@@ -20,6 +20,9 @@ public class GameUI : MonoBehaviour
     public TextMeshProUGUI runInfoDistance;
     public TextMeshProUGUI runInfoMilkCounter;
     public GameObject gameOverPanel;
+    public GameObject summaryScrollView;
+    public Transform summaryContainer;
+    public GameObject summaryEntryPrefab;
     public GameObject objectPlacementPanel;
     public GameObject messagePanel;
     public GameObject restartPanel;
@@ -44,6 +47,14 @@ public class GameUI : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         runInfoContainer.SetActive(false);
+        summaryScrollView.SetActive(PlayerController.instance.encounteredElements.Count > 0);
+        foreach (var tuple in PlayerController.instance.encounteredElements)
+        {
+            var obj = Instantiate(summaryEntryPrefab, Vector3.zero, Quaternion.identity, summaryContainer).GetComponent<EncounteredMapElementEntry>();
+            obj.summaryText.text = $"{tuple.element.userName} {(tuple.element.mapElementType == DynamicallyLoadedLevelElement.MapElementType.Obstacle ? "tricked you with" : "helped you with ")} {tuple.element.ui_name} at {tuple.distance}.\nTheir message:";
+            obj.username.text = tuple.element.userName;
+            obj.message.text = tuple.element.userComment;
+        }
     }
 
     public void ShowMessageScreen()
@@ -61,7 +72,7 @@ public class GameUI : MonoBehaviour
             var instance = Instantiate(itemPrefab, Vector3.zero, Quaternion.identity, obj.mapElementType == DynamicallyLoadedLevelElement.MapElementType.Obstacle ? obstacleContainer : helperContainer);
             var item = instance.GetComponent<UIItem>();
             item.image.sprite = obj.GetComponentInChildren<SpriteRenderer>().sprite;
-            item.title.text = obj.name;
+            item.title.text = obj.ui_name;
             item.description.text = obj.description;
             instance.GetComponent<Button>().onClick.AddListener(() =>
             {

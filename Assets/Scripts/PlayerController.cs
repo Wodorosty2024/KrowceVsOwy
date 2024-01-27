@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     public ParticleSystem dust;
 
     bool deathScreenShowed = false;
+
+    public List<(float distance, DynamicallyLoadedLevelElement element)> encounteredElements = new List<(float distance, DynamicallyLoadedLevelElement element)>();
+
     // Start is called before the first frame update
     void Start()
     {
