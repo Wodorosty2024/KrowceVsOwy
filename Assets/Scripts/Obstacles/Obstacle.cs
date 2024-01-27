@@ -6,6 +6,12 @@ public class Obstacle : MonoBehaviour
 {
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("hit");
+        PlayerController pc;
+        if (col.TryGetComponent<PlayerController>(out pc))
+        {
+            if (pc.isDead) return;
+            if (!pc.isInAir) pc.Die();
+            Debug.Log("hit");
+        }        
     }
 }
