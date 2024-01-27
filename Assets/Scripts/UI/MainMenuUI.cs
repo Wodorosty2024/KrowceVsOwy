@@ -104,6 +104,10 @@ public class MainMenuUI : MonoBehaviour
         PlayerPrefs.SetString("team", teamSelection.options[teamSelection.value].text);
         PlayerPrefs.SetString("session", sessionSelection.options[sessionSelection.value].text);
     }
+
+    public void QuitGame() {
+        Application.Quit();
+    }
     
     public void StartGame()
     {

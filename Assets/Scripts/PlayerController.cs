@@ -163,6 +163,12 @@ public class PlayerController : MonoBehaviour
         return rbs;
     }
 
+    [ContextMenu("ToggleRagdoll")]
+    public void ToggleRagdoll2()
+    {
+        ToggleRagdoll(isRagdoll);
+    }
+
     public void ToggleRagdoll(bool ragdoll)
     {
         foreach (var rb in rigidbody2Ds)
