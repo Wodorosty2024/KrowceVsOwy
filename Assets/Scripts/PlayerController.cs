@@ -13,31 +13,67 @@ public class PlayerController : MonoBehaviour
     public float currentHorizontalSpeed;
     public float constantVerticalSpeed = 0.5f;
 
-    public float accumulatedDistance=0;
+    public float accumulatedDistance = 0;
+    public bool isInAir = false;
+    public bool isDead = false;
+    public AnimationCurve jumpCurve;
 
     public BoxCollider2D playableArea;
 
     // Start is called before the first frame update
     void Start()
     {
-        instance=this;
+        instance = this;
     }
 
-    // Update is called once per frame
+    float jumpStartTime;
+    float jumpStartY;
     void Update()
     {
-        currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed+(movementDirection.x*Time.deltaTime), movementSpeedRange.x, movementSpeedRange.y);
+        if (isDead) return;
 
-        var desiredPosition = transform.position + new Vector3(0, movementDirection.y*constantVerticalSpeed*Time.deltaTime);
-        if (playableArea.OverlapPoint(desiredPosition))
+        currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed + (movementDirection.x * Time.deltaTime), movementSpeedRange.x, movementSpeedRange.y);
+        var desiredPosition = transform.position + new Vector3(0, movementDirection.y * constantVerticalSpeed * Time.deltaTime);
+        if (isInAir)
         {
-            transform.position=desiredPosition;
-            accumulatedDistance+=currentHorizontalSpeed*Time.deltaTime;
+            var t = Time.time-jumpStartTime;
+            var v = jumpCurve.Evaluate(t);
+            transform.position = new Vector3(0, jumpStartY+v);
+            if (t > jumpCurve.keys[jumpCurve.length-1].time)
+            {
+                isInAir=false;
+                transform.position = Vector2.up*jumpStartY;
+            }                
         }
+        else
+        {
+            if (playableArea.OverlapPoint(desiredPosition))
+            {
+                transform.position = desiredPosition;
+                accumulatedDistance += currentHorizontalSpeed;
+            }
+        }
+    }
+
+    public void Die()
+    {
+        isDead = true;
+        currentHorizontalSpeed=0;
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        movementDirection = context.ReadValue<Vector2>()*accelerationSpeed;
+        movementDirection = context.ReadValue<Vector2>() * accelerationSpeed;
+    }
+
+    public void Jump(InputAction.CallbackContext context)
+    {
+        var value = context.ReadValueAsButton();
+        if (value && !isInAir)
+        {            
+            isInAir=true;
+            jumpStartTime=Time.time;
+            jumpStartY=transform.position.y;
+        }
     }
 }
