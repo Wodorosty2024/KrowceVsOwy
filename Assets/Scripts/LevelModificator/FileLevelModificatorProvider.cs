@@ -30,4 +30,9 @@ public class FileLevelModificatorProvider : BaseLevelModificator
         var json = JsonConvert.SerializeObject(elements);
         File.WriteAllText(FullPath, json);
     }
+
+    public override void SaveNewElement(MapElementModel model)
+    {
+        throw new System.NotImplementedException();
+    }
 }

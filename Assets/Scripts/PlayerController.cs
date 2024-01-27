@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public ParticleSystem dust;
 
+    bool deathScreenShowed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -69,10 +70,16 @@ public class PlayerController : MonoBehaviour
                         rb.angularDrag = 10;
                     }
                 }
+
             }
             else
             {
-                currentHorizontalSpeed=0;
+                currentHorizontalSpeed = 0;
+            }
+            if (!deathScreenShowed && currentHorizontalSpeed == 0)
+            {
+                deathScreenShowed = true;
+                GameUI.instance.ShowGameOverPanel();
             }
             return;
         }
@@ -109,17 +116,10 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         deathStartVelocity = currentHorizontalSpeed;
         deathStartY = rootBone.position.y;
-        // currentHorizontalSpeed=0;
         GetComponent<BoxCollider2D>().enabled = false;
         if (ragdoll)
         {
             ToggleRagdoll(true);
-            // foreach (var rb in rblist)
-            // {
-            //     // var dist = (killer.transform.position - rb.transform.position).sqrMagnitude;
-            //     // rb.AddTorque(dist);
-            //     rb.AddForce(currentHorizontalSpeed * Vector2.right * Random.Range(0.5f,1));
-            // }
             rootBone.AddTorque(-360 * currentHorizontalSpeed * 10, ForceMode2D.Impulse);
             rootBone.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
         }
@@ -166,6 +166,6 @@ public class PlayerController : MonoBehaviour
             rb.isKinematic = !ragdoll;
         }
         isRagdoll = ragdoll;
-        animator.enabled=!isRagdoll;
+        animator.enabled = !isRagdoll;
     }
 }

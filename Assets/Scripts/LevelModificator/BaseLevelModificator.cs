@@ -6,4 +6,6 @@ public abstract class BaseLevelModificator : ScriptableObject
     public abstract List<MapElementModel> LoadLevelElements();
 
     public abstract void SaveLevelElements(List<MapElementModel> elements);
+
+    public abstract void SaveNewElement(MapElementModel model);
 }
