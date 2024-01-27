@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{36896984-5650-4f34-85f3-4da24a54c58c}">
+		<property name="assetPath">
+			<value>436396__kiyoshiakira__poop-plop.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>1.28</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{a40c17b7-10cf-4a23-97e9-a3ed689ea442}</destination>
+		</relationship>
+	</object>
+</objects>
