@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     public BoxCollider2D playableArea;
 
+    public ParticleSystem dust; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead) return;
 
+        dust.Play();
         currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed + (movementDirection.x * Time.deltaTime), movementSpeedRange.x, movementSpeedRange.y);
         var desiredPosition = transform.position + new Vector3(0, movementDirection.y * constantVerticalSpeed * Time.deltaTime);
         if (isInAir)
