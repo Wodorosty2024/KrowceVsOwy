@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
@@ -6,26 +7,32 @@ public class ObjectPool : MonoBehaviour
     public GameObject prefab;
     public int count=10;
 
-    List<GameObject> pool = new List<GameObject>();
-
-    public void Start()
+    Dictionary<GameObject, bool> pool = new Dictionary<GameObject, bool>();
+    GameObject CreateNew()
     {
-        for (int i = 0; i < count; i++)
-        {
             var obj = Instantiate(prefab, Vector3.zero, Quaternion.identity, transform);
             obj.SetActive(false);
-            pool.Add(obj);
-        }
+            pool.Add(obj, false);
+            return obj;
     }
 
     public GameObject GetObjectFromPool()
     {
+        if (pool.Count < count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                CreateNew();
+            }
+        }
+
         foreach (var element in pool)
         {
-            if (!element.activeInHierarchy)
+            if (!element.Value)
             {
-                element.SetActive(true);
-                return element;
+                element.Key.SetActive(true);
+                pool[element.Key]=true;
+                return element.Key;
             }
         }
         return null;
@@ -34,5 +41,6 @@ public class ObjectPool : MonoBehaviour
     public void ReturnToPool(GameObject g)
     {
         g.SetActive(false);
+        pool[g]=false;
     }
 }

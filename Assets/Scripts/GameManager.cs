@@ -28,7 +28,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         var obj = pool.GetObjectFromPool();
+        obj.transform.position = Vector3.zero;
+        var bounds = obj.GetComponentInChildren<SpriteRenderer>().bounds;
         spawnedLanes.Add(obj);
+        var obj2 = pool.GetObjectFromPool();
+        var bounds2 = obj2.GetComponentInChildren<SpriteRenderer>().bounds;
+        obj2.transform.position = new Vector3(bounds.center.x+bounds.extents.x+bounds2.extents.x,0,0);
+        spawnedLanes.Add(obj2);
     }
 
     // Update is called once per frame
@@ -38,8 +44,10 @@ public class GameManager : MonoBehaviour
         {
             fragment.transform.position -= Vector3.right*PlayerController.instance.currentHorizontalSpeed;
         }
-        var last =spawnedLanes.Last().GetComponentInChildren<SpriteRenderer>();
         var horzExtent = (Camera.main.orthographicSize * Screen.width / Screen.height)*cameraBoundsMultiplier;
+        var last =spawnedLanes.LastOrDefault()?.GetComponentInChildren<SpriteRenderer>();
+        if (last != null)
+        {
         if (last.bounds.center.x + last.bounds.extents.x < horzExtent)
         {
             var obj = pool.GetObjectFromPool();
@@ -49,11 +57,15 @@ public class GameManager : MonoBehaviour
             obj.GetComponent<Lane>().Prepare();
             spawnedLanes.Add(obj);
         }
-        var first = spawnedLanes[0].GetComponentInChildren<SpriteRenderer>();
+        }
+        var first = spawnedLanes.FirstOrDefault()?.GetComponentInChildren<SpriteRenderer>();
+        if (first != null)
+        {
         if (first.bounds.center.x + first.bounds.extents.x < -horzExtent)
         {
             pool.ReturnToPool(spawnedLanes[0]);
             spawnedLanes.RemoveAt(0);
+        }
         }
     }
 
