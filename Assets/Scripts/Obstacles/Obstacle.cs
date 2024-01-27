@@ -9,9 +9,19 @@ public class Obstacle : MonoBehaviour
         PlayerController pc;
         if (col.TryGetComponent<PlayerController>(out pc))
         {
-            if (pc.isDead) return;
+            if (pc.isDead)
+            {
+                // Zresetuj licznik hasPlayedSound w klasie Poop po śmierci gracza
+                Poop[] poopObjects = FindObjectsOfType<Poop>();
+                foreach (Poop poop in poopObjects)
+                {
+                    poop.HasPlayedSound = false;
+                }
+                return;
+            }
+
             if (!pc.isInAir) pc.Die();
             Debug.Log("hit");
-        }        
+        }
     }
 }

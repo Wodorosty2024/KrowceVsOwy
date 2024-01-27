@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 141153141}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1835,13 +1835,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c9b0da35b26e5a4caacaa33ab47d97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EventName:
+  backgroundMusicEvent:
     Guid:
-      Data1: -30219835
-      Data2: 1104269288
-      Data3: 842894506
-      Data4: 254851729
-    Path: event:/BackgroundMusic
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  poopSound:
+    Guid:
+      Data1: 78696995
+      Data2: 1119054108
+      Data3: -2032828767
+      Data4: -2001245787
+    Path: event:/Fly
 --- !u!1 &1058889046
 GameObject:
   m_ObjectHideFlags: 0
@@ -3470,7 +3477,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 141153135}
 --- !u!114 &1976277735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3522,7 +3529,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1976277733}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1976277737
 Camera:
   m_ObjectHideFlags: 0
