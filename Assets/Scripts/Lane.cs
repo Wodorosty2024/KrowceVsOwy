@@ -14,16 +14,11 @@ public class Lane : MonoBehaviour
 
     public void Prepare()
     {
-        var toDelete = new List<Transform>();
-        foreach (var child in obstaclesContainer)
-        {
-            toDelete.Add(child as Transform);
-        }
-        for (int i=0; i < toDelete.Count; i++) Destroy(toDelete[i].gameObject);
+        obstaclesContainer.RemoveChildren();
 
         var rend = GetComponentInChildren<SpriteRenderer>();
-        Vector2 extents = new Vector2(rend.bounds.center.x-rend.bounds.extents.x, rend.bounds.center.x+rend.bounds.extents.x);
-        var elements = GameManager.instance.levelConfig.Where(x => x.x >= extents.x && x.x <= extents.y);
+        Vector2 extentsPlusDistance = new Vector2(PlayerController.instance.accumulatedDistance + rend.bounds.center.x-rend.bounds.extents.x, PlayerController.instance.accumulatedDistance + rend.bounds.center.x+rend.bounds.extents.x);
+        var elements = GameManager.instance.levelConfig.Where(x => x.x >= extentsPlusDistance.x && x.x <= extentsPlusDistance.y).ToList();
         foreach (var element in elements)
         {
             var refObj = GameManager.instance.dynamicElementsPrefabs.FirstOrDefault(x => x.key == element.key);
@@ -32,7 +27,7 @@ public class Lane : MonoBehaviour
                 Debug.LogError($"Key {element.key} doesn't exists in prefabs list");
                 continue;
             }
-            var obj = Instantiate(refObj, new Vector3(element.x-extents.x, element.y, -1), Quaternion.identity, transform);
+            var obj = Instantiate(refObj, new Vector3(element.x, element.y, -1), Quaternion.identity, obstaclesContainer);
         }
         SpawnRandomObstacles();
     }

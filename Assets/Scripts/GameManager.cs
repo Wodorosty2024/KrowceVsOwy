@@ -27,14 +27,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var obj = pool.GetObjectFromPool();
-        obj.transform.position = Vector3.zero;
-        var bounds = obj.GetComponentInChildren<SpriteRenderer>().bounds;
-        spawnedLanes.Add(obj);
-        var obj2 = pool.GetObjectFromPool();
-        var bounds2 = obj2.GetComponentInChildren<SpriteRenderer>().bounds;
-        obj2.transform.position = new Vector3(bounds.center.x+bounds.extents.x+bounds2.extents.x,0,0);
-        spawnedLanes.Add(obj2);
+        LoadLevelElements();
+        var obj = SpawnLane(null);
+        var bounds = obj.GetComponentInChildren<Renderer>().bounds;
+        obj.transform.position = Vector3.zero + Vector3.right * bounds.extents.x;
+        SpawnLane(obj.GetComponentInChildren<Renderer>());
     }
 
     // Update is called once per frame
@@ -50,12 +47,7 @@ public class GameManager : MonoBehaviour
         {
         if (last.bounds.center.x + last.bounds.extents.x < horzExtent)
         {
-            var obj = pool.GetObjectFromPool();
-            var rend = obj.GetComponentInChildren<SpriteRenderer>();
-            rend.color = new Color(Random.Range(0,1.0f), Random.Range(0,1.0f), 1,1);
-            obj.transform.position = new Vector3(last.bounds.center.x + last.bounds.extents.x + rend.bounds.extents.x, 0,0);
-            obj.GetComponent<Lane>().Prepare();
-            spawnedLanes.Add(obj);
+            SpawnLane(last);
         }
         }
         var first = spawnedLanes.FirstOrDefault()?.GetComponentInChildren<SpriteRenderer>();
@@ -67,6 +59,17 @@ public class GameManager : MonoBehaviour
             spawnedLanes.RemoveAt(0);
         }
         }
+    }
+
+    public GameObject SpawnLane(Renderer last)
+    {
+            var obj = pool.GetObjectFromPool();
+            var rend = obj.GetComponentInChildren<SpriteRenderer>();
+            rend.color = new Color(Random.Range(0,1.0f), Random.Range(0,1.0f), 1,1);
+            obj.transform.position = last == null ? Vector3.zero : new Vector3(last.bounds.center.x + last.bounds.extents.x + rend.bounds.extents.x, 0,0);
+            obj.GetComponent<Lane>().Prepare();
+            spawnedLanes.Add(obj);
+            return obj;
     }
 
     public void SpawnElement()
