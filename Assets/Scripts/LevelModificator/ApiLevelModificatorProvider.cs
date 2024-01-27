@@ -26,7 +26,8 @@ public class ApiLevelModificatorProvider : BaseLevelModificator
             // var json = JsonConvert.DeserializeObject<List<MapElementModel>>(result.webRequest.downloadHandler.text);
             // return json;
             var sessions = GetSessions();
-            return sessions.FirstOrDefault()?.items ?? new();
+            string session = PlayerPrefs.GetString("session", "not-found");
+            return sessions.FirstOrDefault(s => s.name == session)?.items ?? new();
         }
         catch (Exception e)
         {

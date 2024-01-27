@@ -1,3 +1,5 @@
+using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -12,38 +14,100 @@ public class MainMenuUI : MonoBehaviour
     public TMP_Dropdown teamSelection;
     public TMP_Dropdown sessionSelection;
 
+    public string baseUrl = "https://krowce.bieda.it/api";
+    string GetSessionsEndpoint => $"{baseUrl}/sessions/?format=json";
+    string GetUsersEndpoint => $"{baseUrl}/users/?format=json";
+    float timeoutLimit = 5;
+
     void Start()
     {
+        //DontDestroyOnLoad(this.gameObject);
         username.text = PlayerPrefs.GetString("username", "Player");
 
-        // Load dropdown options asynchronously
-        StartCoroutine(LoadDropdownOptions("https://your-api-url/team_options", teamSelection));
-        StartCoroutine(LoadDropdownOptions("https://your-api-url/session_options", sessionSelection));
+        LoadSessionOptions(sessionSelection);
+        var sessionIndex = sessionSelection.options.FindIndex(option => option.text == PlayerPrefs.GetString("session", "no-session"));
+        sessionSelection.value = sessionIndex;
+
+        LoadUserOptions(teamSelection);
+        var teamIndex = teamSelection.options.FindIndex(option => option.text == PlayerPrefs.GetString("team", "no-team"));
+        teamSelection.value = teamIndex;
+    }
+    void LoadUserOptions(TMP_Dropdown dropdown)
+    {
+        // Parse the response and update the dropdown options
+        var users = GetUsers();
+        List<string> options = new();
+        foreach (var user in users)
+        {
+            options.Add(user.name);
+        }
+        dropdown.ClearOptions();
+        dropdown.AddOptions(options);
     }
 
-    // Coroutine to load dropdown options asynchronously
-    IEnumerator LoadDropdownOptions(string url, TMP_Dropdown dropdown)
+    List<User> GetUsers()
     {
-        using (UnityWebRequest www = UnityWebRequest.Get(url))
+        try
         {
-            yield return www.SendWebRequest();
-
-            if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
+            var result = UnityWebRequest.Get(GetUsersEndpoint).SendWebRequest();
+            var time = Time.time;
+            while (!result.isDone)
             {
-                Debug.LogError("Error loading dropdown options: " + www.error);
+                if (Time.time - time > timeoutLimit) return new();
             }
-            else
-            {
-                // Parse the response and update the dropdown options
-                string[] options = www.downloadHandler.text.Split('\n');
-                dropdown.ClearOptions();
-                dropdown.AddOptions(new List<string>(options));
-            }
+            var json = JsonConvert.DeserializeObject<List<User>>(result.webRequest.downloadHandler.text);
+            return json;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+            return new();
         }
     }
 
+    void LoadSessionOptions(TMP_Dropdown dropdown)
+    {
+        // Parse the response and update the dropdown options
+        List<Session> sessions = GetSessions();
+        List<string> options = new();
+        foreach (var session in sessions)
+        {
+            options.Add(session.name);
+        }
+        dropdown.ClearOptions();
+        dropdown.AddOptions(options);
+    }
+
+    List<Session> GetSessions()
+    {
+        try
+        {
+            var result = UnityWebRequest.Get(GetSessionsEndpoint).SendWebRequest();
+            var time = Time.time;
+            while (!result.isDone)
+            {
+                if (Time.time - time > timeoutLimit) return new();
+            }
+            var json = JsonConvert.DeserializeObject<SessionCollection>(result.webRequest.downloadHandler.text);
+            return json.sessions;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+            return new();
+        }
+    }
+
+    public void SaveSettings()
+    {
+        PlayerPrefs.SetString("username", teamSelection.options[teamSelection.value].text); // TODO: Change to username
+        PlayerPrefs.SetString("team", teamSelection.options[teamSelection.value].text);
+        PlayerPrefs.SetString("session", sessionSelection.options[sessionSelection.value].text);
+    }
+    
     public void StartGame()
     {
+        SaveSettings();
         SceneManager.LoadScene(1);
     }
 }
