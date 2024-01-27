@@ -10,7 +10,7 @@ public class Obstacle : MonoBehaviour
         if (col.TryGetComponent<PlayerController>(out pc))
         {
             if (pc.isDead) return;
-            if (!pc.isInAir) pc.Die();
+            if (!pc.isInAir) pc.Die(true, gameObject);
             Debug.Log("hit");
         }        
     }
