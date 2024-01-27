@@ -40,7 +40,7 @@ public class Lane : MonoBehaviour
         {
             float x = Random.Range(bounds.center.x-bounds.extents.x, bounds.center.x+bounds.extents.x);
             float y = Random.Range(bounds.center.y-bounds.extents.y, bounds.center.y+bounds.extents.y);
-            Instantiate(GameManager.instance.dynamicElementsPrefabs[0], new Vector3(x,y,0), Quaternion.identity, obstaclesContainer);
+            Instantiate(GameManager.instance.dynamicElementsPrefabs[Random.Range(0, GameManager.instance.dynamicElementsPrefabs.Count)], new Vector3(x,y,0), Quaternion.identity, obstaclesContainer);
         }
     }
 }

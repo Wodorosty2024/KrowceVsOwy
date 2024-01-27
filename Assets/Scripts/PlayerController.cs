@@ -13,40 +13,84 @@ public class PlayerController : MonoBehaviour
     public float currentHorizontalSpeed;
     public float constantVerticalSpeed = 0.5f;
 
+    public float deathDrag = 0.1f;
+
     public float accumulatedDistance = 0;
     public bool isInAir = false;
     public bool isDead = false;
+    public bool isRagdoll = false;
     public AnimationCurve jumpCurve;
+    public AnimationCurve deathScaleCurve;
 
     public BoxCollider2D playableArea;
+    public Rigidbody2D rootBone;
+    public List<Rigidbody2D> rigidbody2Ds;
 
-    public ParticleSystem dust; 
+    public int health = 1;
+
+    public Animator animator;
+    public ParticleSystem dust;
 
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
+        rigidbody2Ds = GetAllRbs();
+        ToggleRagdoll(false);
     }
 
     float jumpStartTime;
     float jumpStartY;
+    float deathStartVelocity;
+    float deathStartY;
     void Update()
     {
-        if (isDead) return;
+        if (isDead)
+        {
+            if (isRagdoll)
+            {
+                currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed - deathDrag * Time.deltaTime, 0, currentHorizontalSpeed);
+                var t = 1 - (currentHorizontalSpeed / deathStartVelocity);
+                if (currentHorizontalSpeed != 0)
+                {
+                    rootBone.MovePosition(new Vector2(0, deathStartY + deathScaleCurve.Evaluate(t)));
+                }
+                foreach (var rb in rigidbody2Ds)
+                {
+                    if (rb != rootBone)
+                        rb.gravityScale = deathScaleCurve.Evaluate(t); // currentHorizontalSpeed == 0 ? 0 : 1;
+                }
+                rootBone.angularDrag = 360 * (1 - currentHorizontalSpeed);
+                if (currentHorizontalSpeed < .3f)
+                {
+                    foreach (var rb in rigidbody2Ds)
+                    {
+                        rb.drag = 10;
+                        rb.angularDrag = 10;
+                    }
+                }
+            }
+            else
+            {
+                currentHorizontalSpeed=0;
+            }
+            return;
+        }
 
         dust.Play();
         currentHorizontalSpeed = Mathf.Clamp(currentHorizontalSpeed + (movementDirection.x * Time.deltaTime), movementSpeedRange.x, movementSpeedRange.y);
         var desiredPosition = transform.position + new Vector3(0, movementDirection.y * constantVerticalSpeed * Time.deltaTime);
+        animator.SetBool(AnimatorConstants.inAir, isInAir);
         if (isInAir)
         {
-            var t = Time.time-jumpStartTime;
+            var t = Time.time - jumpStartTime;
             var v = jumpCurve.Evaluate(t);
-            transform.position = new Vector3(0, jumpStartY+v);
-            if (t > jumpCurve.keys[jumpCurve.length-1].time)
+            transform.position = new Vector3(0, jumpStartY + v);
+            if (t > jumpCurve.keys[jumpCurve.length - 1].time)
             {
-                isInAir=false;
-                transform.position = Vector2.up*jumpStartY;
-            }                
+                isInAir = false;
+                transform.position = Vector2.up * jumpStartY;
+            }
         }
         else
         {
@@ -58,10 +102,27 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void Die(bool ragdoll, GameObject killer)
     {
+        if (isDead) return;
+
         isDead = true;
-        currentHorizontalSpeed=0;
+        deathStartVelocity = currentHorizontalSpeed;
+        deathStartY = rootBone.position.y;
+        // currentHorizontalSpeed=0;
+        GetComponent<BoxCollider2D>().enabled = false;
+        if (ragdoll)
+        {
+            ToggleRagdoll(true);
+            // foreach (var rb in rblist)
+            // {
+            //     // var dist = (killer.transform.position - rb.transform.position).sqrMagnitude;
+            //     // rb.AddTorque(dist);
+            //     rb.AddForce(currentHorizontalSpeed * Vector2.right * Random.Range(0.5f,1));
+            // }
+            rootBone.AddTorque(-360 * currentHorizontalSpeed * 10, ForceMode2D.Impulse);
+            rootBone.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -73,10 +134,38 @@ public class PlayerController : MonoBehaviour
     {
         var value = context.ReadValueAsButton();
         if (value && !isInAir)
-        {            
-            isInAir=true;
-            jumpStartTime=Time.time;
-            jumpStartY=transform.position.y;
+        {
+            isInAir = true;
+            jumpStartTime = Time.time;
+            jumpStartY = transform.position.y;
         }
+    }
+
+    List<Rigidbody2D> GetAllRbs()
+    {
+        List<Rigidbody2D> rbs = new List<Rigidbody2D>();
+        Queue<Transform> children = new Queue<Transform>();
+        children.Enqueue(rootBone.transform);
+        while (children.Count > 0)
+        {
+            var c = children.Dequeue();
+            var rb = c.GetComponent<Rigidbody2D>();
+            if (rb != null) rbs.Add(rb);
+            foreach (Transform child in c)
+            {
+                children.Enqueue(child);
+            }
+        }
+        return rbs;
+    }
+
+    public void ToggleRagdoll(bool ragdoll)
+    {
+        foreach (var rb in rigidbody2Ds)
+        {
+            rb.isKinematic = !ragdoll;
+        }
+        isRagdoll = ragdoll;
+        animator.enabled=!isRagdoll;
     }
 }
