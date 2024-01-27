@@ -21,11 +21,16 @@ public class MainMenuUI : MonoBehaviour
 
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
         username.text = PlayerPrefs.GetString("username", "Player");
 
         LoadSessionOptions(sessionSelection);
+        var sessionIndex = sessionSelection.options.FindIndex(option => option.text == PlayerPrefs.GetString("session", "no-session"));
+        sessionSelection.value = sessionIndex;
+
         LoadUserOptions(teamSelection);
+        var teamIndex = teamSelection.options.FindIndex(option => option.text == PlayerPrefs.GetString("team", "no-team"));
+        teamSelection.value = teamIndex;
     }
     void LoadUserOptions(TMP_Dropdown dropdown)
     {
