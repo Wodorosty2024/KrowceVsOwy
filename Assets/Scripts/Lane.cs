@@ -17,6 +17,7 @@ public class Lane : MonoBehaviour
     {
         obstaclesContainer.RemoveChildren();
         if (parallax != null) parallax.Prepare();
+        if (initialLane) return;        
 
         var rend = GetComponentInChildren<SpriteRenderer>();
         Vector2 extentsPlusDistance = new Vector2(PlayerController.instance.accumulatedDistance + rend.bounds.center.x-rend.bounds.extents.x, PlayerController.instance.accumulatedDistance + rend.bounds.center.x+rend.bounds.extents.x);
@@ -30,8 +31,8 @@ public class Lane : MonoBehaviour
                 continue;
             }
             var obj = Instantiate(refObj, new Vector3(element.x, element.y, -1), Quaternion.identity, obstaclesContainer);
+            obj.name+="_UG";
         }
-        if (!initialLane)        
             SpawnRandomObstacles();
     }
 

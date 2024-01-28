@@ -17,8 +17,11 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
 
     public bool requireFeetContact=false;
 
+    public bool isBeingPreviewed=false;
+
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (isBeingPreviewed) return;
         PlayerController pc = col.GetComponentInParent<PlayerController>();
         if (pc != null)
         {
@@ -57,6 +60,8 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        if (isBeingPreviewed) return;
+
         PlayerController pc = col.collider.GetComponentInParent<PlayerController>();
         if (pc != null)
         {

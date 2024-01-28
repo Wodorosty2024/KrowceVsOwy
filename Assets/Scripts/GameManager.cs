@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         LoadLevelElements();
         var obj = SpawnLane(null);
         var bounds = obj.GetComponentInChildren<Renderer>().bounds;
-        obj.transform.position = Vector3.zero - Vector3.right * bounds.extents.x;
+        obj.transform.position = Vector3.zero;
         SpawnLane(obj.GetComponentInChildren<Renderer>());
     }
 
@@ -83,7 +83,6 @@ public class GameManager : MonoBehaviour
     public void LoadLevelElements()
     {
         levelConfig = levelModificatorProvider.LoadLevelElements();
-
     }
 
     public void SaveLevelElements()
@@ -101,6 +100,7 @@ public class GameManager : MonoBehaviour
         var el = dynamicElementsPrefabs.FirstOrDefault(x => x.key == key);
         previewObject = Instantiate(el.gameObject, Vector3.zero, Quaternion.identity).GetComponent<DynamicallyLoadedLevelElement>();
         previewObject.GetComponent<DynamicallyLoadedLevelElement>().enabled=false;
+        previewObject.GetComponent<DynamicallyLoadedLevelElement>().isBeingPreviewed=true;
         previewObject.GetComponent<Collider2D>().isTrigger=true;
     }
 
