@@ -15,12 +15,14 @@ public class Fence : DynamicallyLoadedLevelElement
         {
             pc.health--;
             if (pc.health <= 0)
+            {
                 pc.Die(true, gameObject);
+                brokenFenceGO.SetActive(true);
+                fenceRendererGO.SetActive(false);
+            }
             else
             {
                 GetComponentInChildren<Collider2D>().enabled = false;
-                brokenFenceGO.SetActive(true);
-                fenceRendererGO.SetActive(false);
             }
 
             Debug.Log("hit");
