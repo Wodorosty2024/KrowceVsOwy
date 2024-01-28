@@ -48,10 +48,10 @@ public class GameUI : MonoBehaviour
         gameOverPanel.SetActive(true);
         runInfoContainer.SetActive(false);
         summaryScrollView.SetActive(PlayerController.instance.encounteredElements.Count > 0);
-        foreach (var tuple in PlayerController.instance.encounteredElements)
+        foreach (var tuple in PlayerController.instance.encounteredElements.Values)
         {
             var obj = Instantiate(summaryEntryPrefab, Vector3.zero, Quaternion.identity, summaryContainer).GetComponent<EncounteredMapElementEntry>();
-            obj.summaryText.text = $"{tuple.element.userName} {(tuple.element.mapElementType == DynamicallyLoadedLevelElement.MapElementType.Obstacle ? "tricked you with" : "helped you with ")} {tuple.element.ui_name} at {tuple.distance.ToString("F2")}.\nTheir message:";
+            obj.summaryText.text = $"{tuple.element.userName} {(tuple.element.mapElementType == DynamicallyLoadedLevelElement.MapElementType.Obstacle ? "tricked you with" : "helped you with")} {tuple.element.ui_name} at {tuple.distance.ToString("F2")}.\nTheir message:";
             obj.username.text = tuple.element.userName;
             obj.message.text = tuple.element.userComment;
         }
@@ -91,7 +91,7 @@ public class GameUI : MonoBehaviour
         {
         if (GameManager.instance.previewObject != null)
         {
-            Destroy(GameManager.instance.previewObject);
+            Destroy(GameManager.instance.previewObject.gameObject);
         }
         objectPlacementPanel.SetActive(false);
         objectSelectionPanel.SetActive(true);

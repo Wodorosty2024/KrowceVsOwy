@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     bool deathScreenShowed = false;
 
-    public List<(float distance, DynamicallyLoadedLevelElement element)> encounteredElements = new List<(float distance, DynamicallyLoadedLevelElement element)>();
+    public Dictionary<string, (float distance, DynamicallyLoadedLevelElement element)> encounteredElements = new();
 
     // Start is called before the first frame update
     void Start()
@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     float jumpStartY;
     float deathStartVelocity;
     float deathStartY;
-    void Update()
+    void FixedUpdate()
     {
         if (isDead)
         {

@@ -114,8 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37f4fc0d097b4e4e8b9dc315185c08d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowRandomGeneration: 1
+  allowRandomGeneration: 0
   mapElementType: 1
+  id: 
   key: poop_remover
   ui_name: Poop Remover
   description: Will deactivate poop
@@ -123,6 +124,8 @@ MonoBehaviour:
   userComment: 
   requireFeetContact: 0
   isBeingPreviewed: 0
+  laneId: 0
+  referencedObject: 
 --- !u!4 &4696287471928954405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
@@ -139,6 +142,14 @@ PrefabInstance:
     - target: {fileID: -8653719598885068355, guid: f5fb025a109e78947b66b5be750f529e, type: 3}
       propertyPath: m_Name
       value: toilet paper
+      objectReference: {fileID: 0}
+    - target: {fileID: -7843547498557614989, guid: f5fb025a109e78947b66b5be750f529e, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -7843547498557614989, guid: f5fb025a109e78947b66b5be750f529e, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -93895037
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: f5fb025a109e78947b66b5be750f529e, type: 3}
       propertyPath: m_LocalPosition.x

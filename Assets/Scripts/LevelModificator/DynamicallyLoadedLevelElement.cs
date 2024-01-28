@@ -2,11 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 public class DynamicallyLoadedLevelElement : MonoBehaviour
 {
+    public static int lastId=-1;
+
     public enum MapElementType { Obstacle, Helper }
 
     public bool allowRandomGeneration = true;
 
     public MapElementType mapElementType;
+    public string id;
     public string key;
 
     public string ui_name;
@@ -19,6 +22,14 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
 
     public bool isBeingPreviewed=false;
 
+    public int laneId;
+    public string referencedObject;
+
+    public virtual bool OnSpawned()
+    {
+        return false;
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (isBeingPreviewed) return;
@@ -30,6 +41,7 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
         }
     }
 
+    protected Color semitransparent = new Color(1, .8f, .8f, 0.4f);
     public virtual bool CanBePlaced()
     {
         var col = GetComponent<Collider2D>();
@@ -38,7 +50,7 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
         f.SetLayerMask(LayerMask.NameToLayer("Obstacles"));
         col.OverlapCollider(f, cols);
         bool canBePlaced = cols.Count == 0;
-        GetComponentInChildren<SpriteRenderer>().color = canBePlaced ? Color.white : new Color(1, .8f, .8f, 0.4f);
+        GetComponentInChildren<SpriteRenderer>().color = canBePlaced ? Color.white : semitransparent;
 
         return canBePlaced;
     }
@@ -57,8 +69,8 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
         if (!string.IsNullOrEmpty(userName))
         {
             var dist = PlayerController.instance.accumulatedDistance;
-            if (!PlayerController.instance.encounteredElements.Contains((dist,this)))
-                PlayerController.instance.encounteredElements.Add((dist, this));
+            if (!PlayerController.instance.encounteredElements.ContainsKey(id))
+                PlayerController.instance.encounteredElements.Add(id, (dist, this));
         }
     }
 

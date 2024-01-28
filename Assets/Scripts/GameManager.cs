@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        DynamicallyLoadedLevelElement.lastId=-1;
         LoadLevelElements();
         var obj = SpawnLane(null);
         var bounds = obj.GetComponentInChildren<Renderer>().bounds;
@@ -113,22 +114,32 @@ public class GameManager : MonoBehaviour
     public void SendPreviewElement(string sentence)
     {
         var dist = previewObject.transform.position-PlayerController.instance.transform.position;
+        var key = previewObject.GetComponent<DynamicallyLoadedLevelElement>().key;
+        var referencedObject = previewObject.GetComponent<DynamicallyLoadedLevelElement>().referencedObject;
+        var lane = spawnedLanes.FirstOrDefault(x => x.GetComponent<Collider2D>().bounds.Contains(previewObject.transform.position)).GetComponent<Lane>();
+        Vector2 pos = lane.obstaclesContainer.InverseTransformPoint(previewObject.transform.position);
+        // var x = PlayerController.instance.accumulatedDistance + dist.x;
+        // var y = PlayerController.instance.accumulatedDistance + dist.x;
+        Debug.Log($"Object {key} saved at {pos.x} {pos.y} with lane id {lane.id}");
         MapElementModel model = new MapElementModel()
         {
-            key = previewObject.GetComponent<DynamicallyLoadedLevelElement>().key,
-            x = PlayerController.instance.accumulatedDistance + dist.x,
-            y = previewObject.transform.position.y,
+            key=key,
+            x = pos.x,
+            y = pos.y,
             sentence = sentence,
             user = PlayerPrefs.GetString("username", "Player"),
             session = PlayerPrefs.GetString("session", "default"),
+            disables = referencedObject,
+            lane = lane.id
         };
         levelModificatorProvider.SaveNewElement(model); // meow
         previewObject = null;
     }
 
+    [ContextMenu("Restart")]
     public void Restart()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
     }
 
     public void Quit()
