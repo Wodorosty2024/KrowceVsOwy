@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
             user = PlayerPrefs.GetString("username", "Player"),
             session = PlayerPrefs.GetString("session", "default"),
         };
-        levelModificatorProvider.SaveNewElement(model);
+        levelModificatorProvider.SaveNewElement(model); // meow
         previewObject = null;
     }
 
