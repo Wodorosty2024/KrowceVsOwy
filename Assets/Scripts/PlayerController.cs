@@ -99,11 +99,14 @@ public class PlayerController : MonoBehaviour
         {
             var t = Time.time - jumpStartTime;
             var v = jumpCurve.Evaluate(t);
-            transform.position = new Vector3(0, jumpStartY + v);
             if (t > jumpCurve.keys[jumpCurve.length - 1].time)
             {
                 isInAir = false;
-                transform.position = Vector2.up * jumpStartY;
+                transform.position = new Vector2(transform.position.x, jumpStartY);
+            }
+            else
+            {
+                transform.position = new Vector3(transform.position.x, jumpStartY + v);
             }
         }
         else

@@ -3051,6 +3051,34 @@ PrefabInstance:
       propertyPath: movementSpeedRange.y
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 8843019039950761538, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].value
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843019039950761538, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].inSlope
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843019039950761538, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].inSlope
+      value: 1.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843019039950761538, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].inSlope
+      value: -6.6666665
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843019039950761538, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[0].outSlope
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843019039950761538, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[1].outSlope
+      value: 1.6666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843019039950761538, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: jumpCurve.m_Curve.Array.data[2].outSlope
+      value: -6.6666665
+      objectReference: {fileID: 0}
     - target: {fileID: 9054552556743598718, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.7137798
