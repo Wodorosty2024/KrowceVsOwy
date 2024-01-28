@@ -7,7 +7,7 @@ public class Log : DynamicallyLoadedLevelElement
     bool snaps=false;   
     public override void MovePreview()
     {
-        GetComponent<SpriteRenderer>().sortingOrder=10;
+        GetComponentInChildren<SpriteRenderer>().sortingOrder=10;
         RaycastHit2D[] hit = Physics2D.RaycastAll(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
         var col =hit.FirstOrDefault(x => x.collider != null && x.collider.GetComponent<Hole>() != null).collider;
         if (col != null)

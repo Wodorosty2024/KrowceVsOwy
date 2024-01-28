@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
             if (!deathScreenShowed && currentHorizontalSpeed == 0)
             {
                 deathScreenShowed = true;
-                
+
                 StartCoroutine(GameOverCoroutine());
             }
             return;
@@ -112,9 +112,9 @@ public class PlayerController : MonoBehaviour
             if (playableArea.OverlapPoint(desiredPosition))
             {
                 transform.position = desiredPosition;
-                accumulatedDistance += currentHorizontalSpeed;
             }
         }
+        accumulatedDistance += currentHorizontalSpeed;
     }
 
     IEnumerator GameOverCoroutine()

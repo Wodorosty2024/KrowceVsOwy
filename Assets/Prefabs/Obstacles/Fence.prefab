@@ -301,10 +301,11 @@ MonoBehaviour:
   mapElementType: 0
   key: fence
   ui_name: Fence
-  description: Have to be jumped over
+  description: Has to be jumped over
   userName: 
   userComment: 
   requireFeetContact: 0
+  isBeingPreviewed: 0
   fenceRendererGO: {fileID: 8472200904462501601}
   brokenFenceGO: {fileID: 5751087218665066799}
 --- !u!114 &805202600717913027
