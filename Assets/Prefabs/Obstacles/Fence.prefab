@@ -209,6 +209,8 @@ MonoBehaviour:
   allowRandomGeneration: 1
   mapElementType: 0
   key: fence
+  ui_name: Fence
+  description: Have to be jumped over
   userName: 
   userComment: 
   fenceRenderer: {fileID: 906463050859574314}

@@ -82,7 +82,8 @@ public class PlayerController : MonoBehaviour
             if (!deathScreenShowed && currentHorizontalSpeed == 0)
             {
                 deathScreenShowed = true;
-                GameUI.instance.ShowGameOverPanel();
+                
+                StartCoroutine(GameOverCoroutine());
             }
             return;
         }
@@ -111,6 +112,12 @@ public class PlayerController : MonoBehaviour
                 accumulatedDistance += currentHorizontalSpeed;
             }
         }
+    }
+
+    IEnumerator GameOverCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+        GameUI.instance.ShowGameOverPanel();
     }
 
     public void Die(bool ragdoll, GameObject killer)

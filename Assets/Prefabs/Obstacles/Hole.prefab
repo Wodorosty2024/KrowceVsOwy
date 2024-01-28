@@ -209,6 +209,8 @@ MonoBehaviour:
   allowRandomGeneration: 1
   mapElementType: 0
   key: hole
+  ui_name: Hole
+  description: Have to be jumped over
   userName: 
   userComment: 
 --- !u!114 &6508178363419173682

@@ -201,6 +201,8 @@ MonoBehaviour:
   allowRandomGeneration: 1
   mapElementType: 1
   key: milk
+  ui_name: Milk
+  description: Will make you strong enough to bash through fence
   userName: 
   userComment: 
 --- !u!4 &4696287471928954405 stripped

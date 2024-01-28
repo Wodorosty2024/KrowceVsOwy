@@ -174,8 +174,8 @@ MonoBehaviour:
   allowRandomGeneration: 1
   mapElementType: 0
   key: poo
-  name: 
-  description: 
+  ui_name: Poo
+  description: Slows you down
   userName: 
   userComment: 
 --- !u!114 &7671155033512192394

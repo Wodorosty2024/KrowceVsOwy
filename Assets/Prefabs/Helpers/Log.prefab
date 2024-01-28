@@ -13,6 +13,14 @@ PrefabInstance:
       value: log
       objectReference: {fileID: 0}
     - target: {fileID: 2548978721567832819, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: ui_name
+      value: Log
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548978721567832819, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: description
+      value: Can be placed over hole
+      objectReference: {fileID: 0}
+    - target: {fileID: 2548978721567832819, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: mapElementType
       value: 1
       objectReference: {fileID: 0}
