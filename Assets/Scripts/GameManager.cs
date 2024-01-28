@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
     public void LoadLevelElements()
     {
         levelConfig = levelModificatorProvider.LoadLevelElements();
-        
+
     }
 
     public void SaveLevelElements()
@@ -99,9 +99,9 @@ public class GameManager : MonoBehaviour
     public void CreatePreviewElement(string key)
     {
         var el = dynamicElementsPrefabs.FirstOrDefault(x => x.key == key);
-        previewObject = Instantiate(el.gameObject, Vector3.zero, Quaternion.identity).GetComponent<DynamicallyLoadedLevelElement>();        
+        previewObject = Instantiate(el.gameObject, Vector3.zero, Quaternion.identity).GetComponent<DynamicallyLoadedLevelElement>();
         previewObject.GetComponent<DynamicallyLoadedLevelElement>().enabled=false;
-        previewObject.GetComponent<Collider2D>().isTrigger=true;        
+        previewObject.GetComponent<Collider2D>().isTrigger=true;
     }
 
     public void ConfirmPreviewElement()
@@ -118,7 +118,9 @@ public class GameManager : MonoBehaviour
             key = previewObject.GetComponent<DynamicallyLoadedLevelElement>().key,
             x = PlayerController.instance.accumulatedDistance + dist.x,
             y = previewObject.transform.position.y,
-            sentence=sentence
+            sentence = sentence,
+            user = PlayerPrefs.GetString("username", "Player"),
+            session = PlayerPrefs.GetString("session", "default"),
         };
         levelModificatorProvider.SaveNewElement(model);
         previewObject = null;

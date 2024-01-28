@@ -7,4 +7,5 @@ public struct MapElementModel
 
     public string user;
     public string sentence;
+    public string session;
 }

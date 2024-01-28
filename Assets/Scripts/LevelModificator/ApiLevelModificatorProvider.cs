@@ -13,6 +13,7 @@ public class ApiLevelModificatorProvider : BaseLevelModificator
 
     string GetMapElementsEndpoint => $"{baseUrl}/test";
     string PostMapElementsEndpoint => $"{baseUrl}/test";
+    string PostMapElementEndpoint => $"{baseUrl}/finish-combo/";
 
     float timeoutLimit = 5;
 
@@ -75,6 +76,20 @@ public class ApiLevelModificatorProvider : BaseLevelModificator
 
     public override void SaveNewElement(MapElementModel model)
     {
-        
+        var json = JsonConvert.SerializeObject(model);
+
+        try
+        {
+            var result = UnityWebRequest.Post(PostMapElementEndpoint, json, "application/json");
+            var time = Time.time;
+            while (!result.isDone)
+            {
+                if (Time.time - time > timeoutLimit) return;
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
     }
 }
