@@ -216,6 +216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowRandomGeneration: 1
   mapElementType: 0
+  id: 
   key: hole
   ui_name: Hole
   description: Has to be jumped over
@@ -223,6 +224,8 @@ MonoBehaviour:
   userComment: 
   requireFeetContact: 1
   isBeingPreviewed: 0
+  laneId: 0
+  referencedObject: 
   isActive: 1
 --- !u!114 &6508178363419173682
 MonoBehaviour:
@@ -299,7 +302,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.21940517, y: 0.14431977}
+    - - {x: 0.0639534, y: 0.23379612}
+      - {x: -0.27488852, y: 0.22199643}
       - {x: -0.5121489, y: -0.02860424}
       - {x: -0.29517978, y: -0.23506081}
       - {x: 0.32894242, y: -0.2688229}
