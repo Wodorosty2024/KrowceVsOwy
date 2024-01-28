@@ -6,6 +6,7 @@ using UnityEngine;
 public class Lane : MonoBehaviour
 {
     public Transform obstaclesContainer;
+    public Parallax parallax;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,7 @@ public class Lane : MonoBehaviour
     public void Prepare(bool initialLane=false)
     {
         obstaclesContainer.RemoveChildren();
+        if (parallax != null) parallax.Prepare();
 
         var rend = GetComponentInChildren<SpriteRenderer>();
         Vector2 extentsPlusDistance = new Vector2(PlayerController.instance.accumulatedDistance + rend.bounds.center.x-rend.bounds.extents.x, PlayerController.instance.accumulatedDistance + rend.bounds.center.x+rend.bounds.extents.x);

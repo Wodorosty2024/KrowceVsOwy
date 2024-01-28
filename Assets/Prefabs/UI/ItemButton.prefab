@@ -377,6 +377,7 @@ GameObject:
   - component: {fileID: 2643853889099319949}
   - component: {fileID: 1324694881069830785}
   - component: {fileID: 7218641494057526083}
+  - component: {fileID: 698739790314642481}
   m_Layer: 5
   m_Name: ItemButton
   m_TagString: Untagged
@@ -471,10 +472,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 0
-    m_Right: 0
-    m_Top: 0
-    m_Bottom: 0
+    m_Left: 20
+    m_Right: 20
+    m_Top: 50
+    m_Bottom: 100
   m_ChildAlignment: 1
   m_Spacing: 16
   m_ChildForceExpandWidth: 0
@@ -499,3 +500,33 @@ MonoBehaviour:
   image: {fileID: 8729290567554748595}
   title: {fileID: 5481623045920703443}
   description: {fileID: 4458196447079038970}
+--- !u!114 &698739790314642481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8395505105005676864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.80299234, b: 0.5330188, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -4649004082618604872, guid: 6e8e97306dd3c4119bd457a2a1f84e38, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1

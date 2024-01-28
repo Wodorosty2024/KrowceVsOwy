@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: key
       value: grave
       objectReference: {fileID: 0}
+    - target: {fileID: 2548978721567832819, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: allowRandomGeneration
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: m_Name
       value: Grave Variant
