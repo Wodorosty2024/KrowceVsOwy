@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     public float constantVerticalSpeed = 0.5f;
 
     public float deathDrag = 0.1f;
-
     public float accumulatedDistance = 0;
     public bool isInAir = false;
     public bool isDead = false;

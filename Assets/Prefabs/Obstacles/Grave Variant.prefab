@@ -129,7 +129,7 @@ MonoBehaviour:
   description: Your grave. Has to be jumped over
   userName: 
   userComment: 
-  requireFeetContact: 0
+  requireFeetContact: 1
 --- !u!60 &8126665674592024904
 PolygonCollider2D:
   m_ObjectHideFlags: 0

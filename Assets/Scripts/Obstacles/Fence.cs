@@ -9,7 +9,7 @@ public class Fence : DynamicallyLoadedLevelElement
 
     public override void HandleCollision(PlayerController pc)
     {
-        GetComponent<BoxCollider2D>().isTrigger=false;
+        GetComponent<BoxCollider2D>().isTrigger = false;
         if (pc.isDead) return;
         if (!pc.isInAir)
         {
@@ -17,15 +17,13 @@ public class Fence : DynamicallyLoadedLevelElement
             if (pc.health <= 0)
             {
                 pc.Die(true, gameObject);
-                brokenFenceGO.SetActive(true);
-                fenceRendererGO.SetActive(false);
             }
             else
             {
                 GetComponentInChildren<Collider2D>().enabled = false;
             }
-
-            Debug.Log("hit");
+            brokenFenceGO.SetActive(true);
+            fenceRendererGO.SetActive(false);
         }
     }
 

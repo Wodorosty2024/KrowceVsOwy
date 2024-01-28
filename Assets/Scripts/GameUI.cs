@@ -40,7 +40,7 @@ public class GameUI : MonoBehaviour
     {
         runInfoDistance.text = PlayerController.instance.accumulatedDistance.ToString("F2");
         runInfoMilkContainer.SetActive(PlayerController.instance.health > 1);
-        runInfoMilkCounter.text = PlayerController.instance.health.ToString();
+        runInfoMilkCounter.text = (PlayerController.instance.health-1).ToString();
     }  
 
     public void ShowGameOverPanel()
