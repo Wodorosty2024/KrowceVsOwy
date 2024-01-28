@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Fence : DynamicallyLoadedLevelElement
 {
-    public SpriteRenderer fenceRenderer;
-    public Sprite brokenFenceSprite;
+    public GameObject fenceRendererGO;
+    public GameObject brokenFenceGO;
 
     public override void HandleCollision(PlayerController pc)
     {
@@ -19,7 +19,8 @@ public class Fence : DynamicallyLoadedLevelElement
             else
             {
                 GetComponentInChildren<Collider2D>().enabled = false;
-                fenceRenderer.sprite = brokenFenceSprite;
+                brokenFenceGO.SetActive(true);
+                fenceRendererGO.SetActive(false);
             }
 
             Debug.Log("hit");
