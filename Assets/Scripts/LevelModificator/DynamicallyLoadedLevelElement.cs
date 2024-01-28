@@ -72,6 +72,11 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
             if (!PlayerController.instance.encounteredElements.ContainsKey(id))
                 PlayerController.instance.encounteredElements.Add(id, (dist, this));
         }
+        var comps = GetComponents<FMODUnity.StudioEventEmitter>();
+        foreach (var c in comps)
+        {
+            c.Play();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)

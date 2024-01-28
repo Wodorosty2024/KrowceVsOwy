@@ -162,7 +162,7 @@ public class PlayerController : MonoBehaviour
     {
         List<Rigidbody2D> rbs = new List<Rigidbody2D>();
         Queue<Transform> children = new Queue<Transform>();
-        children.Enqueue(rootBone.transform);
+        children.Enqueue(rootBone.transform);        
         while (children.Count > 0)
         {
             var c = children.Dequeue();
