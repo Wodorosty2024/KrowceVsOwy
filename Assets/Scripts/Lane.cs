@@ -22,8 +22,7 @@ public class Lane : MonoBehaviour
         for (int i = 0; i < queued.Count; i++)
         {
             var e = queued.Dequeue();
-            if (!e.OnSpawned())
-                queued.Enqueue(e);
+            e.OnSpawned();
         }
     }
 
