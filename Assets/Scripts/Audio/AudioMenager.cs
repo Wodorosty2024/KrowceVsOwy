@@ -67,14 +67,14 @@ public class AudioManager : MonoBehaviour
     fastEmitter.EventReference = fastEvent;
 
     // Odtwarzaj eventy na start.
-    slowEmitter.Play();
-    midEmitter.Play();
-    fastEmitter.Play();
+    // slowEmitter.Play();
+    // midEmitter.Play();
+    // fastEmitter.Play();
 
-    // Zatrzymaj eventy na początku, będziemy je uruchamiać w zależności od prędkości.
-    slowEmitter.Stop();
-    midEmitter.Stop();
-    fastEmitter.Stop();
+    // // Zatrzymaj eventy na początku, będziemy je uruchamiać w zależności od prędkości.
+    // slowEmitter.Stop();
+    // midEmitter.Stop();
+    // fastEmitter.Stop();
 }
 
 
@@ -89,43 +89,43 @@ void Update()
 
     float speed = playerController.currentHorizontalSpeed;
 
-    if (speed == 0f)
-    {
-        // Zatrzymaj odtwarzanie wszystkich dźwięków poruszania
-        slowEmitter.Stop();
-        midEmitter.Stop();
-        fastEmitter.Stop();
-    }
-    else if (speed <= playerController.movementSpeedRange.x)
-    {
-        // Play Slow Event
-        if (!slowEmitter.IsPlaying())
-        {
-            slowEmitter.Play();
-            midEmitter.Stop();
-            fastEmitter.Stop();
-        }
-    }
-    else if (speed >= playerController.movementSpeedRange.x && speed <= playerController.movementSpeedRange.y)
-    {
-        // Play Mid Event
-        if (!midEmitter.IsPlaying())
-        {
-            midEmitter.Play();
-            slowEmitter.Stop();
-            fastEmitter.Stop();
-        }
-    }
-    else
-    {
-        // Play Fast Event
-        if (!fastEmitter.IsPlaying())
-        {
-            fastEmitter.Play();
-            slowEmitter.Stop();
-            midEmitter.Stop();
-        }
-    }
+    // if (speed == 0f)
+    // {
+    //     // Zatrzymaj odtwarzanie wszystkich dźwięków poruszania
+    //     slowEmitter.Stop();
+    //     midEmitter.Stop();
+    //     fastEmitter.Stop();
+    // }
+    // else if (speed <= playerController.movementSpeedRange.x)
+    // {
+    //     // Play Slow Event
+    //     if (!slowEmitter.IsPlaying())
+    //     {
+    //         slowEmitter.Play();
+    //         midEmitter.Stop();
+    //         fastEmitter.Stop();
+    //     }
+    // }
+    // else if (speed >= playerController.movementSpeedRange.x && speed <= playerController.movementSpeedRange.y)
+    // {
+    //     // Play Mid Event
+    //     if (!midEmitter.IsPlaying())
+    //     {
+    //         midEmitter.Play();
+    //         slowEmitter.Stop();
+    //         fastEmitter.Stop();
+    //     }
+    // }
+    // else
+    // {
+    //     // Play Fast Event
+    //     if (!fastEmitter.IsPlaying())
+    //     {
+    //         fastEmitter.Play();
+    //         slowEmitter.Stop();
+    //         midEmitter.Stop();
+    //     }
+    // }
 }
 
 
