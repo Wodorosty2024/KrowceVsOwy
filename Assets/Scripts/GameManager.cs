@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Restart")]
     public void Restart()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void Quit()

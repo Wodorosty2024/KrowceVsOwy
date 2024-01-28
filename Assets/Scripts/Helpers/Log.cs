@@ -5,12 +5,8 @@ public class Log : DynamicallyLoadedLevelElement
 {
 
     bool snaps = false;
-    bool initialized=false;
-
-    public void LateUpdate()
+    public override bool OnSpawned()
     {
-        if (!initialized)
-        {
         if (!string.IsNullOrEmpty(referencedObject))
         {
             var holes = FindObjectsOfType<Hole>();
@@ -18,15 +14,18 @@ public class Log : DynamicallyLoadedLevelElement
             if (obj != null)
             {
                 obj.isActive = false;
-                transform.position=obj.transform.position;
+                transform.position = obj.transform.position;
+                Debug.Log($"{key} {id} found {referencedObject}");
+                return true;
             }
             else
             {
                 Debug.LogError($"{name} {key} references {referencedObject} but it can't be found");
+                Lane.queued.Enqueue(this);
+                return false;
             }
         }
-        initialized=true;
-        }
+        return true;
     }
 
     public override void MovePreview()

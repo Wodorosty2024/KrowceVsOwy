@@ -119,13 +119,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowRandomGeneration: 0
   mapElementType: 1
+  id: 
   key: log
   ui_name: Log
-  description: Can be placed over hole
+  description: Can be placed over a hole
   userName: 
   userComment: 
   requireFeetContact: 0
   isBeingPreviewed: 0
+  laneId: 0
+  referencedObject: 
 --- !u!114 &3658872773127423577
 MonoBehaviour:
   m_ObjectHideFlags: 0

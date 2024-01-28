@@ -4,26 +4,27 @@ using UnityEngine;
 public class PoopRemover : DynamicallyLoadedLevelElement
 {
     bool snaps = false;
-    bool initialized=false;
+    bool initialized = false;
 
-    public void LateUpdate()
+    public override bool OnSpawned()
     {
-        if (initialized) return;
-
         if (!string.IsNullOrEmpty(referencedObject))
         {
             var obj = FindObjectsOfType<Poo>().FirstOrDefault(x => x.id == referencedObject);
             if (obj != null)
             {
                 obj.isActive = false;
-                initialized=true;
+                Debug.Log($"{key} {id} found {referencedObject}");
+                return true;
             }
             else
             {
-                Debug.LogError($"{name} {key} references {referencedObject} but it can't be found");
+                Debug.LogError($"{key} {id} references {referencedObject} but it can't be found");
+                Lane.queued.Enqueue(this);
+                return false;
             }
         }
-        
+        return true;
     }
 
     public override void MovePreview()

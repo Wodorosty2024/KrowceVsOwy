@@ -9,10 +9,22 @@ public class Lane : MonoBehaviour
     public Parallax parallax;
     public int id;
 
+    public static Queue<DynamicallyLoadedLevelElement> queued = new();
+
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    void PostPrepare()
+    {
+        for (int i = 0; i < queued.Count; i++)
+        {
+            var e = queued.Dequeue();
+            if (!e.OnSpawned())
+                queued.Enqueue(e);
+        }
     }
 
     public void Prepare(bool initialLane=false)
@@ -44,6 +56,7 @@ public class Lane : MonoBehaviour
             obj.OnSpawned();
         }
             SpawnRandomObstacles();
+            PostPrepare();
     }
 
     void SpawnRandomObstacles()

@@ -207,11 +207,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowRandomGeneration: 1
   mapElementType: 1
+  id: 
   key: milk
   ui_name: Milk
-  description: Will make you strong enough to bash through fence
+  description: Will make you strong enough to bash through a fence
   userName: 
   userComment: 
+  requireFeetContact: 0
+  isBeingPreviewed: 0
+  laneId: 0
+  referencedObject: 
 --- !u!114 &4786335021988480521
 MonoBehaviour:
   m_ObjectHideFlags: 0

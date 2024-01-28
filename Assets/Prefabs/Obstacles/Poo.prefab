@@ -185,13 +185,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   allowRandomGeneration: 1
   mapElementType: 0
+  id: 
   key: poo
-  ui_name: Poo
+  ui_name: Poop
   description: Slows you down
   userName: 
   userComment: 
   requireFeetContact: 1
   isBeingPreviewed: 0
+  laneId: 0
+  referencedObject: 
+  isActive: 1
 --- !u!114 &7671155033512192394
 MonoBehaviour:
   m_ObjectHideFlags: 0
