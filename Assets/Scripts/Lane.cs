@@ -14,7 +14,7 @@ public class Lane : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     void PostPrepare()
@@ -26,36 +26,37 @@ public class Lane : MonoBehaviour
         }
     }
 
-    public void Prepare(bool initialLane=false)
+    public void Prepare(bool initialLane = false)
     {
         id = DynamicallyLoadedLevelElement.lastId++;
         obstaclesContainer.RemoveChildren();
         if (parallax != null) parallax.Prepare();
-        if (initialLane) return;        
+        if (initialLane) return;
+
+        SpawnRandomObstacles();
 
         var rend = GetComponentInChildren<SpriteRenderer>();
-        Vector2 extentsPlusDistance = new Vector2(PlayerController.instance.accumulatedDistance + rend.bounds.center.x-rend.bounds.extents.x, PlayerController.instance.accumulatedDistance + rend.bounds.center.x+rend.bounds.extents.x);
+        Vector2 extentsPlusDistance = new Vector2(PlayerController.instance.accumulatedDistance + rend.bounds.center.x - rend.bounds.extents.x, PlayerController.instance.accumulatedDistance + rend.bounds.center.x + rend.bounds.extents.x);
         // var elements = GameManager.instance.levelConfig.Where(x => x.x >= extentsPlusDistance.x && x.x <= extentsPlusDistance.y).ToList();
-        var elements = GameManager.instance.levelConfig.Where(x => x.lane == id).ToList();
+        var elements = GameManager.instance.levelConfig.Where(x => x.lane == id).OrderBy(x => string.IsNullOrEmpty(x.disables)).ToList();
         foreach (var element in elements)
         {
-            var refObj = GameManager.instance.dynamicElementsPrefabs.FirstOrDefault(x => x.key == element.key);
+            var refObj = GameManager.instance.dynamicElementsPrefabs.FirstOrDefault(x => x.key == element.key).gameObject;
             if (refObj == null)
             {
                 Debug.LogError($"Key {element.key} doesn't exists in prefabs list");
                 continue;
             }
-            var obj = Instantiate(refObj, new Vector3(element.x, element.y, -1), Quaternion.identity, obstaclesContainer);
+            var obj = Instantiate(refObj, Vector3.zero, Quaternion.identity, obstaclesContainer).GetComponent<DynamicallyLoadedLevelElement>();
             obj.transform.localPosition = new Vector3(element.x, element.y, 0);
             obj.id = element.id;
             obj.userName = element.user;
-            obj.userComment=element.sentence;
-            obj.name+="_UG";
-            obj.referencedObject=element.disables;
+            obj.userComment = element.sentence;
+            obj.name += "_UG";
+            obj.referencedObject = element.disables;
             obj.OnSpawned();
         }
-            SpawnRandomObstacles();
-            PostPrepare();
+        PostPrepare();
     }
 
     void SpawnRandomObstacles()
@@ -66,9 +67,9 @@ public class Lane : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            float x = Random.Range(bounds.center.x-bounds.extents.x, bounds.center.x+bounds.extents.x);
-            float y = Random.Range(playableAreaBounds.center.y-playableAreaBounds.extents.y, playableAreaBounds.center.y+playableAreaBounds.extents.y);
-            var obj = Instantiate(GameManager.instance.dynamicElementsPrefabs[Random.Range(0, GameManager.instance.dynamicElementsPrefabs.Count)], new Vector3(x,y,0), Quaternion.identity, obstaclesContainer).GetComponent<DynamicallyLoadedLevelElement>();
+            float x = Random.Range(bounds.center.x - bounds.extents.x, bounds.center.x + bounds.extents.x);
+            float y = Random.Range(playableAreaBounds.center.y - playableAreaBounds.extents.y, playableAreaBounds.center.y + playableAreaBounds.extents.y);
+            var obj = Instantiate(GameManager.instance.dynamicElementsPrefabs[Random.Range(0, GameManager.instance.dynamicElementsPrefabs.Count)], new Vector3(x, y, 0), Quaternion.identity, obstaclesContainer).GetComponent<DynamicallyLoadedLevelElement>();
             // obj.GenerateRandomID();
             obj.id = $"{id}:{i}";
             obj.OnSpawned();

@@ -15,7 +15,7 @@ public class Log : DynamicallyLoadedLevelElement
             {
                 obj.isActive = false;
                 transform.position = obj.transform.position;
-                Debug.Log($"{key} {id} found {referencedObject}");
+                Debug.Log($"{name} {key} found {referencedObject}");
                 return true;
             }
             else
