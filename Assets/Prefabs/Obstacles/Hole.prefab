@@ -245,15 +245,15 @@ MonoBehaviour:
       Data4: -809639480
     Path: event:/CowFall
   Event: 
-  PlayEvent: 5
-  StopEvent: 6
+  PlayEvent: 9
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
+  OverrideAttenuation: 1
+  OverrideMinDistance: 10
   OverrideMaxDistance: 20
 --- !u!60 &8875917389959640712
 PolygonCollider2D:

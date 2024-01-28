@@ -191,6 +191,7 @@ MonoBehaviour:
   userName: 
   userComment: 
   requireFeetContact: 1
+  isBeingPreviewed: 0
 --- !u!114 &7671155033512192394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +220,7 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
 --- !u!114 &3770811840305080464
@@ -244,12 +245,12 @@ MonoBehaviour:
     Path: event:/PoopSplash
   Event: 
   PlayEvent: 5
-  StopEvent: 6
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
+  OverrideAttenuation: 1
+  OverrideMinDistance: 10
   OverrideMaxDistance: 20

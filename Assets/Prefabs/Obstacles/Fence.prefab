@@ -330,12 +330,12 @@ MonoBehaviour:
     Path: event:/CowHit
   Event: 
   PlayEvent: 5
-  StopEvent: 6
+  StopEvent: 2
   AllowFadeout: 1
   TriggerOnce: 0
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
+  OverrideAttenuation: 1
+  OverrideMinDistance: 10
   OverrideMaxDistance: 20

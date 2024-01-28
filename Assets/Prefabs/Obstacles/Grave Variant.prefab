@@ -382,6 +382,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8126665674592024904}
+    - targetCorrespondingSourceObject: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3759201250488818198}
   m_SourcePrefab: {fileID: 100100000, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
 --- !u!4 &1349514273777105567 stripped
 Transform:
@@ -413,6 +416,7 @@ MonoBehaviour:
   userName: 
   userComment: 
   requireFeetContact: 1
+  isBeingPreviewed: 0
 --- !u!60 &8126665674592024904
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -466,3 +470,34 @@ PolygonCollider2D:
       - {x: 0.7226244, y: -0.2134769}
       - {x: 0.87240124, y: 0.36520022}
   m_UseDelaunayMesh: 0
+--- !u!114 &3759201250488818198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7189138606706013263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: -374415362
+      Data2: 1334931835
+      Data3: 1930843311
+      Data4: 597151657
+    Path: event:/CowHit
+  Event: 
+  PlayEvent: 9
+  StopEvent: 2
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 1
+  OverrideMinDistance: 10
+  OverrideMaxDistance: 20
