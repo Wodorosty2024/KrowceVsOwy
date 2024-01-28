@@ -36,7 +36,7 @@ public class Lane : MonoBehaviour
         var rend = GetComponentInChildren<SpriteRenderer>();
         Vector2 extentsPlusDistance = new Vector2(PlayerController.instance.accumulatedDistance + rend.bounds.center.x - rend.bounds.extents.x, PlayerController.instance.accumulatedDistance + rend.bounds.center.x + rend.bounds.extents.x);
         // var elements = GameManager.instance.levelConfig.Where(x => x.x >= extentsPlusDistance.x && x.x <= extentsPlusDistance.y).ToList();
-        var elements = GameManager.instance.levelConfig.Where(x => x.lane == id).OrderBy(x => string.IsNullOrEmpty(x.disables)).ToList();
+        var elements = GameManager.instance.levelConfig.Where(x => x.lane == id).OrderByDescending(x => string.IsNullOrEmpty(x.disables)).ToList();
         foreach (var element in elements)
         {
             var refObj = GameManager.instance.dynamicElementsPrefabs.FirstOrDefault(x => x.key == element.key).gameObject;
@@ -62,12 +62,12 @@ public class Lane : MonoBehaviour
         var count = 5;
         var bounds = GetComponentInChildren<SpriteRenderer>().bounds;
         var playableAreaBounds = PlayerController.instance.playableArea.bounds;
-
+        var spawnablePrefabs = GameManager.instance.dynamicElementsPrefabs.Where(x => x.allowRandomGeneration).ToList();
         for (int i = 0; i < count; i++)
         {
             float x = Random.Range(bounds.center.x - bounds.extents.x, bounds.center.x + bounds.extents.x);
             float y = Random.Range(playableAreaBounds.center.y - playableAreaBounds.extents.y, playableAreaBounds.center.y + playableAreaBounds.extents.y);
-            var obj = Instantiate(GameManager.instance.dynamicElementsPrefabs[Random.Range(0, GameManager.instance.dynamicElementsPrefabs.Count)], new Vector3(x, y, 0), Quaternion.identity, obstaclesContainer).GetComponent<DynamicallyLoadedLevelElement>();
+            var obj = Instantiate(spawnablePrefabs[Random.Range(0, spawnablePrefabs.Count)], new Vector3(x, y, 0), Quaternion.identity, obstaclesContainer).GetComponent<DynamicallyLoadedLevelElement>();
             // obj.GenerateRandomID();
             obj.id = $"{id}:{i}";
             obj.OnSpawned();

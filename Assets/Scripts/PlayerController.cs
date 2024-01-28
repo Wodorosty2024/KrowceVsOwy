@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviour
                 {
                     foreach (var rb in rigidbody2Ds)
                     {
-                        rb.drag = 10;
-                        rb.angularDrag = 10;
+                        rb.drag = 100*(1-currentHorizontalSpeed);
+                        rb.angularDrag = 100*(1-currentHorizontalSpeed);
                     }
                 }
 
