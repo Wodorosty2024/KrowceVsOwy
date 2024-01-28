@@ -2925,7 +2925,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 307293811459998377, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 307293811459998377, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3047,6 +3047,10 @@ PrefabInstance:
       propertyPath: playableArea
       value: 
       objectReference: {fileID: 1648316309}
+    - target: {fileID: 8843019039950761538, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: movementSpeedRange.y
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 9054552556743598718, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.7137798
@@ -4027,10 +4031,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1222442706}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 5
+    OrthographicSize: 8
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -4056,7 +4060,7 @@ Transform:
   m_GameObject: {fileID: 1058889046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -11}
+  m_LocalPosition: {x: 0, y: 1.1, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4728,11 +4732,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209046265}
   m_CullTransparentMesh: 1
---- !u!4 &1222442706 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 307293811459998377, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
-  m_PrefabInstance: {fileID: 703867476}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1222442712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7417,7 +7416,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7442,7 +7441,7 @@ Transform:
   m_GameObject: {fileID: 1976277733}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -11}
+  m_LocalPosition: {x: 0, y: 1.1, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
