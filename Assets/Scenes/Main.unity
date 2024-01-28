@@ -4836,25 +4836,25 @@ MonoBehaviour:
     Path: event:/Fly
   slowEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -2030022875
+      Data2: 1256497635
+      Data3: -2064268876
+      Data4: -2113206482
+    Path: event:/PlayerFootstepsSlow
   midEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -171617461
+      Data2: 1340695694
+      Data3: -257355381
+      Data4: -1210278042
+    Path: event:/PlayerFootstepsMid
   fastEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -456121572
+      Data2: 1244184684
+      Data3: 923638659
+      Data4: -794405027
+    Path: event:/PlayerFootstepsFast
 --- !u!4 &1373456177
 Transform:
   m_ObjectHideFlags: 0
