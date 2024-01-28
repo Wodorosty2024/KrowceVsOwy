@@ -8,12 +8,13 @@ public class Hole : DynamicallyLoadedLevelElement
     void Start()
     {
         List<Collider2D> results = new();
-        GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D().NoFilter(), results);
+        GetComponent<Collider2D>().OverlapCollider(new ContactFilter2D().NoFilter(), results);
         foreach (var col in results)
         {
             if (col.GetComponent<Log>())
             {
                 isActive = false;
+                Debug.Log("Hole deactivated");
                 break;
             }
         }
@@ -22,7 +23,7 @@ public class Hole : DynamicallyLoadedLevelElement
     public override void HandleCollision(PlayerController pc)
     {
         base.HandleCollision(pc);
-        if (!pc.isDead && !pc.isInAir)
+        if (!pc.isDead && !pc.isInAir && isActive)
         {
             pc.Die(false, gameObject);
             pc.transform.position = transform.position;
