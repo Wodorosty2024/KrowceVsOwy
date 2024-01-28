@@ -69,7 +69,7 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
         if (!string.IsNullOrEmpty(userName))
         {
             var dist = PlayerController.instance.accumulatedDistance;
-            if (!PlayerController.instance.encounteredElements.ContainsKey(id))
+            if (!PlayerController.instance.encounteredElements.ContainsKey(id) && !PlayerController.instance.isDead)
                 PlayerController.instance.encounteredElements.Add(id, (dist, this));
         }
         var comps = GetComponents<FMODUnity.StudioEventEmitter>();
