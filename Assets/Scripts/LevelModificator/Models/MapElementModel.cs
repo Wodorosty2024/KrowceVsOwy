@@ -5,5 +5,6 @@ public struct MapElementModel
     public float x;
     public float y;
 
+    public string user;
     public string sentence;
 }

@@ -25,11 +25,11 @@ public class MainMenuUI : MonoBehaviour
         username.text = PlayerPrefs.GetString("username", "Player");
 
         LoadSessionOptions(sessionSelection);
-        var sessionIndex = sessionSelection.options.FindIndex(option => option.text == PlayerPrefs.GetString("session", "no-session"));
+        var sessionIndex = sessionSelection.options.FindIndex(option => option.text == PlayerPrefs.GetString("session", "default"));
         sessionSelection.value = sessionIndex;
 
         LoadUserOptions(teamSelection);
-        var teamIndex = teamSelection.options.FindIndex(option => option.text == PlayerPrefs.GetString("team", "no-team"));
+        var teamIndex = teamSelection.options.FindIndex(option => option.text == PlayerPrefs.GetString("team", "Krowy"));
         teamSelection.value = teamIndex;
     }
     void LoadUserOptions(TMP_Dropdown dropdown)
@@ -100,7 +100,7 @@ public class MainMenuUI : MonoBehaviour
 
     public void SaveSettings()
     {
-        PlayerPrefs.SetString("username", teamSelection.options[teamSelection.value].text); // TODO: Change to username
+        PlayerPrefs.SetString("username", username.text);
         PlayerPrefs.SetString("team", teamSelection.options[teamSelection.value].text);
         PlayerPrefs.SetString("session", sessionSelection.options[sessionSelection.value].text);
     }

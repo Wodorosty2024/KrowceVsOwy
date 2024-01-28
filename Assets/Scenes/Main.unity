@@ -149,6 +149,7 @@ GameObject:
   - component: {fileID: 99112347}
   - component: {fileID: 99112346}
   - component: {fileID: 99112345}
+  - component: {fileID: 99112348}
   m_Layer: 5
   m_Name: ScrollViewContainer
   m_TagString: Untagged
@@ -234,6 +235,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 99112343}
   m_CullTransparentMesh: 1
+--- !u!114 &99112348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99112343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1004569971
+      Data2: 1137902046
+      Data3: 1466909627
+      Data4: 1206498863
+    Path: event:/MenuClick
+  Event: 
+  PlayEvent: 17
+  StopEvent: 18
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &219520610
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +656,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 241277001}
   m_CullTransparentMesh: 1
+--- !u!1 &258368846 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8483890086368112715, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+  m_PrefabInstance: {fileID: 703867476}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &258765165
 GameObject:
   m_ObjectHideFlags: 0
@@ -2934,6 +2971,26 @@ PrefabInstance:
       propertyPath: m_ConnectedAnchor.y
       value: 0.000000014668329
       objectReference: {fileID: 0}
+    - target: {fileID: 7787876119652567434, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787876119652567434, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: ShapeModule.m_Position.x
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787876119652567434, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.48687255
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787876119652567434, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5283019
+      objectReference: {fileID: 0}
+    - target: {fileID: 7787876119652567434, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.48095408
+      objectReference: {fileID: 0}
     - target: {fileID: 8308404774545411157, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
       propertyPath: m_Camera
       value: 
@@ -2985,7 +3042,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8483890086368112715, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1222442712}
   m_SourcePrefab: {fileID: 100100000, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
 --- !u!224 &761186321 stripped
 RectTransform:
@@ -4657,6 +4717,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 307293811459998377, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
   m_PrefabInstance: {fileID: 703867476}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1222442712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258368846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c174847537987594f9b2f6fa0962a5f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event:
+    Guid:
+      Data1: -2030022875
+      Data2: 1256497635
+      Data3: -2064268876
+      Data4: -2113206482
+    Path: event:/PlayerFootstepsSlow
 --- !u!1 &1302831873
 GameObject:
   m_ObjectHideFlags: 0
@@ -4718,6 +4797,42 @@ MonoBehaviour:
   m_Spacing: {x: 100, y: 100}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!1 &1312152116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8395505105005676864, guid: 13b6b3962de434025ab48bcb76a6f957, type: 3}
+  m_PrefabInstance: {fileID: 8390376480539605205}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1312152122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312152116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1004569971
+      Data2: 1137902046
+      Data3: 1466909627
+      Data4: 1206498863
+    Path: event:/MenuClick
+  Event: 
+  PlayEvent: 17
+  StopEvent: 18
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!114 &1320056822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4838,11 +4953,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusicEvent:
     Guid:
-      Data1: -30219835
-      Data2: 1104269288
-      Data3: 842894506
-      Data4: 254851729
-    Path: event:/BackgroundMusic
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   poopSound:
     Guid:
       Data1: 78696995
@@ -8030,7 +8145,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8395505105005676864, guid: 13b6b3962de434025ab48bcb76a6f957, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1312152122}
   m_SourcePrefab: {fileID: 100100000, guid: 13b6b3962de434025ab48bcb76a6f957, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
