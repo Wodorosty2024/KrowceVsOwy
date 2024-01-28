@@ -190,6 +190,7 @@ MonoBehaviour:
   description: Slows you down
   userName: 
   userComment: 
+  requireFeetContact: 1
 --- !u!114 &7671155033512192394
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,12 +15,15 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
     public string userName;
     public string userComment;
 
+    public bool requireFeetContact=false;
+
     void OnTriggerEnter2D(Collider2D col)
     {
         PlayerController pc = col.GetComponentInParent<PlayerController>();
         if (pc != null)
         {
-            HandleCollision(pc);
+            if (!requireFeetContact || (requireFeetContact && col.tag == "Feet"))
+                HandleCollision(pc);
         }
     }
 
@@ -57,7 +60,8 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
         PlayerController pc = col.collider.GetComponentInParent<PlayerController>();
         if (pc != null)
         {
-            HandleCollision(pc);
+            if (!requireFeetContact || (requireFeetContact && col.collider.tag == "Feet"))
+                HandleCollision(pc);
         }
     }
 }

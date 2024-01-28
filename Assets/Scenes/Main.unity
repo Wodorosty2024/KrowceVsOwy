@@ -2963,6 +2963,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 719541179323453674, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: m_TagString
+      value: Feet
+      objectReference: {fileID: 0}
+    - target: {fileID: 2761137608192421375, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: m_TagString
+      value: Feet
+      objectReference: {fileID: 0}
     - target: {fileID: 3508564846448946619, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
       propertyPath: m_ConnectedAnchor.x
       value: 0.79518855
@@ -2970,6 +2978,14 @@ PrefabInstance:
     - target: {fileID: 3508564846448946619, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
       propertyPath: m_ConnectedAnchor.y
       value: 0.000000014668329
+      objectReference: {fileID: 0}
+    - target: {fileID: 5689887960139671253, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: m_TagString
+      value: Feet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7432068263507806016, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
+      propertyPath: m_TagString
+      value: Feet
       objectReference: {fileID: 0}
     - target: {fileID: 7787876119652567434, guid: 5a2f5f67245a26f41bdb57f4b7c41ddb, type: 3}
       propertyPath: ShapeModule.m_Scale.x

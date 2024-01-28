@@ -170,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8139755406574610250, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5344571816457494887, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
@@ -217,6 +217,7 @@ MonoBehaviour:
   description: Have to be jumped over
   userName: 
   userComment: 
+  requireFeetContact: 0
   fenceRenderer: {fileID: 906463050859574314}
   brokenFenceSprite: {fileID: 0}
 --- !u!114 &805202600717913027
