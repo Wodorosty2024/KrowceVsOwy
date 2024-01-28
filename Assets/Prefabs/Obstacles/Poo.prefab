@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: poop
       objectReference: {fileID: 0}
+    - target: {fileID: 8004411006223577132, guid: 0b1c8b10f61bfa64e882fa664dba4f80, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 1.17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

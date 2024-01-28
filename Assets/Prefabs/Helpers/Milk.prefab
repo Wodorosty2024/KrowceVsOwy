@@ -180,6 +180,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7395613054020533878}
+    - targetCorrespondingSourceObject: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4786335021988480521}
   m_SourcePrefab: {fileID: 100100000, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
 --- !u!1 &3481867448813011189 stripped
 GameObject:
@@ -205,6 +208,37 @@ MonoBehaviour:
   description: Will make you strong enough to bash through fence
   userName: 
   userComment: 
+--- !u!114 &4786335021988480521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3481867448813011189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: Player
+  EventReference:
+    Guid:
+      Data1: -358480444
+      Data2: 1201312451
+      Data3: 1423565971
+      Data4: 1999705913
+    Path: event:/Milk
+  Event: 
+  PlayEvent: 5
+  StopEvent: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  AllowNonRigidbodyDoppler: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!4 &4696287471928954405 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5566249653098746647, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}

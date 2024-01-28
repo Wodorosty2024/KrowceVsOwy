@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
 
+    private AudioManager audioManager;
+
     public Vector2 movementDirection;
     public Vector2 movementSpeedRange = new Vector2(.5f, 2);
     public float accelerationSpeed = 0.5f;
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
         instance = this;
         rigidbody2Ds = GetAllRbs();
         ToggleRagdoll(false);
+
+        audioManager = FindObjectOfType<AudioManager>();
     }
 
     float jumpStartTime;

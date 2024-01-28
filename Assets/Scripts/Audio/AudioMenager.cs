@@ -20,6 +20,8 @@ public class AudioManager : MonoBehaviour
     private StudioEventEmitter midEmitter;
     private StudioEventEmitter fastEmitter;
 
+    private static bool isAlreadyOn = false;
+
 
     void Awake()
     {
@@ -38,11 +40,15 @@ public class AudioManager : MonoBehaviour
 
     void PlayMusic()
     {
-        // Inicjalizacja i odtwarzanie instancji zdarzenia dźwiękowego FMOD dla muzyki w tle
-        musicEventInstance = FMODUnity.RuntimeManager.CreateInstance(backgroundMusicEvent);
-
-        // Ustawienie instancji zdarzenia na pętlę (odtwarzanie w nieskończoność)
-        musicEventInstance.start();
+        if(isAlreadyOn == false)
+        {
+            isAlreadyOn = true;
+            // Inicjalizacja i odtwarzanie instancji zdarzenia dźwiękowego FMOD dla muzyki w tle
+            musicEventInstance = FMODUnity.RuntimeManager.CreateInstance(backgroundMusicEvent);
+            // Ustawienie instancji zdarzenia na pętlę (odtwarzanie w nieskończoność)
+            musicEventInstance.start();
+            Debug.Log("PLAY MUSIC");
+        }
     }
 
     // Funkcja do zatrzymywania muzyki (jeśli to konieczne)
