@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 public class DynamicallyLoadedLevelElement : MonoBehaviour
 {
@@ -16,11 +17,33 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        PlayerController pc;
-        if (col.TryGetComponent<PlayerController>(out pc))
+        PlayerController pc = col.GetComponentInParent<PlayerController>();
+        if (pc != null)
         {
             HandleCollision(pc);
         }
+    }
+
+    public virtual bool CanBePlaced()
+    {
+        var col = GetComponent<Collider2D>();
+        List<Collider2D> cols = new List<Collider2D>();
+        var f = new ContactFilter2D();
+        f.SetLayerMask(LayerMask.NameToLayer("Obstacles"));
+        col.OverlapCollider(f, cols);
+        bool canBePlaced = cols.Count == 0;
+        GetComponentInChildren<SpriteRenderer>().color = canBePlaced ? Color.white : new Color(1, .8f, .8f, 0.4f);
+
+        return canBePlaced;
+    }
+
+    public virtual void MovePreview()
+    {
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var bounds = PlayerController.instance.playableArea.bounds;
+        transform.position = new Vector3(transform.position.x, Mathf.Clamp(transform.position.y, bounds.center.y - bounds.extents.y, bounds.center.y + bounds.extents.y), 0);
+        GetComponentInChildren<SpriteRenderer>().sortingOrder = 15;
+        CanBePlaced();
     }
 
     public virtual void HandleCollision(PlayerController pc)
@@ -31,8 +54,8 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        PlayerController pc;
-        if (col.collider.TryGetComponent<PlayerController>(out pc))
+        PlayerController pc = col.collider.GetComponentInParent<PlayerController>();
+        if (pc != null)
         {
             HandleCollision(pc);
         }

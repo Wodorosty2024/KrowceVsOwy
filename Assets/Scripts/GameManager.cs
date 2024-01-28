@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     public List<MapElementModel> levelConfig = new List<MapElementModel>();
     List<GameObject> spawnedLanes = new List<GameObject>();
 
-    public GameObject previewObject;
+    public DynamicallyLoadedLevelElement previewObject;
     public bool isConfirmed;
 
     void Awake()
@@ -43,9 +43,7 @@ public class GameManager : MonoBehaviour
     {
         if (previewObject != null && !isConfirmed)
         {
-            previewObject.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            var bounds = PlayerController.instance.playableArea.bounds;
-            previewObject.transform.position = new Vector3(previewObject.transform.position.x, Mathf.Clamp(previewObject.transform.position.y, bounds.center.y - bounds.extents.y, bounds.center.y + bounds.extents.y), 0);
+            previewObject.MovePreview();
         }
 
         foreach (var fragment in spawnedLanes)
@@ -101,9 +99,9 @@ public class GameManager : MonoBehaviour
     public void CreatePreviewElement(string key)
     {
         var el = dynamicElementsPrefabs.FirstOrDefault(x => x.key == key);
-        previewObject = Instantiate(el.gameObject, Vector3.zero, Quaternion.identity);        
+        previewObject = Instantiate(el.gameObject, Vector3.zero, Quaternion.identity).GetComponent<DynamicallyLoadedLevelElement>();        
         previewObject.GetComponent<DynamicallyLoadedLevelElement>().enabled=false;
-        previewObject.GetComponent<Collider2D>().enabled=false;        
+        previewObject.GetComponent<Collider2D>().isTrigger=true;        
     }
 
     public void ConfirmPreviewElement()

@@ -11,7 +11,8 @@ public class Hole : DynamicallyLoadedLevelElement
         GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D().NoFilter(), results);
         foreach (var col in results)
         {
-            if (col.GetComponent<Log>()) {
+            if (col.GetComponent<Log>())
+            {
                 isActive = false;
                 break;
             }

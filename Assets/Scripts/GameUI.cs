@@ -87,20 +87,26 @@ public class GameUI : MonoBehaviour
 
     public void CancelObjectPlacement(InputAction.CallbackContext context)
     {
+        if (!GameManager.instance.isConfirmed)
+        {
         if (GameManager.instance.previewObject != null)
         {
             Destroy(GameManager.instance.previewObject);
         }
         objectPlacementPanel.SetActive(false);
         objectSelectionPanel.SetActive(true);
+        }
     }
 
     public void ConfirmNewObject(InputAction.CallbackContext context)
     {
         if (context.performed && GameManager.instance.previewObject != null)
         {
-            GameManager.instance.ConfirmPreviewElement();
-            objectPlacementPanel.gameObject.SetActive(false);
+            if (GameManager.instance.previewObject.CanBePlaced())
+            {
+                GameManager.instance.ConfirmPreviewElement();
+                objectPlacementPanel.gameObject.SetActive(false);
+            }
         }
     }
 

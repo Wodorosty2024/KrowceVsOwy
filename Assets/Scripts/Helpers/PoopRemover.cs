@@ -1,0 +1,4 @@
+public class PoopRemover : DynamicallyLoadedLevelElement
+{
+    
+}

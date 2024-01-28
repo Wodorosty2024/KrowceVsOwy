@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1281893007466881408}
   - component: {fileID: 4143398748824243151}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: hole_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,6 +99,10 @@ PrefabInstance:
     - target: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: m_Name
       value: Hole
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5344571816457494887, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: m_Color.b
@@ -213,6 +217,7 @@ MonoBehaviour:
   description: Have to be jumped over
   userName: 
   userComment: 
+  isActive: 1
 --- !u!114 &6508178363419173682
 MonoBehaviour:
   m_ObjectHideFlags: 0

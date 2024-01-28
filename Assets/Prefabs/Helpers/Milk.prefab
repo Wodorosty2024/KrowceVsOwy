@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6151207204226156055}
   - component: {fileID: 4614190960954235018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: milk_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,10 @@ PrefabInstance:
     - target: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: m_Name
       value: Milk
+      objectReference: {fileID: 0}
+    - target: {fileID: 4341973602583190983, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5344571816457494887, guid: caff8af663ce74932bd40d48e6ba475d, type: 3}
       propertyPath: m_Color.g

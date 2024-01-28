@@ -39,10 +39,11 @@ public class Lane : MonoBehaviour
     {
         var count = 5;
         var bounds = GetComponentInChildren<SpriteRenderer>().bounds;
+        var playableAreaBounds = PlayerController.instance.playableArea.bounds;
         for (int i = 0; i < count; i++)
         {
             float x = Random.Range(bounds.center.x-bounds.extents.x, bounds.center.x+bounds.extents.x);
-            float y = Random.Range(bounds.center.y-bounds.extents.y, bounds.center.y+bounds.extents.y);
+            float y = Random.Range(playableAreaBounds.center.y-playableAreaBounds.extents.y, playableAreaBounds.center.y+playableAreaBounds.extents.y);
             Instantiate(GameManager.instance.dynamicElementsPrefabs[Random.Range(0, GameManager.instance.dynamicElementsPrefabs.Count)], new Vector3(x,y,0), Quaternion.identity, obstaclesContainer);
         }
     }
