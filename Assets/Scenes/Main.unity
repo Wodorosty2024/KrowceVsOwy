@@ -4969,11 +4969,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundMusicEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -30219835
+      Data2: 1104269288
+      Data3: 842894506
+      Data4: 254851729
+    Path: event:/BackgroundMusic
   poopSound:
     Guid:
       Data1: 78696995
