@@ -6,7 +6,6 @@ using UnityEngine;
 public class Lane : MonoBehaviour
 {
     public Transform obstaclesContainer;
-    public Parallax parallax;
     public int id;
 
     public static Queue<DynamicallyLoadedLevelElement> queued = new();
@@ -30,7 +29,6 @@ public class Lane : MonoBehaviour
     {
         id = DynamicallyLoadedLevelElement.lastId++;
         obstaclesContainer.RemoveChildren();
-        if (parallax != null) parallax.Prepare();
         if (initialLane) return;
 
         SpawnRandomObstacles();

@@ -1,40 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Parallax : MonoBehaviour
+public class Parallex : MonoBehaviour
 {
-    public List<Transform> layers;
-    public List<float> speeds;
+    private float length, startpos;
+    public float parallexEffect;
 
-    List<Vector2> originalPositions;
+    // Start is called before the first frame update
     void Start()
     {
-        SavePositions();
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        startpos = transform.position.x;
+        length = sr.bounds.size.x;
+        sr.drawMode = SpriteDrawMode.Tiled;
+        sr.size = new Vector2(length * 3f, sr.size.y);
+
     }
 
-    void SavePositions()
+    // Update is called once per frame
+    void FixedUpdate()
     {
-        if (originalPositions != null) return;
-        originalPositions = new List<Vector2>();
-        foreach (var layer in layers) originalPositions.Add(layer.localPosition);
-    }
+        float dist = -PlayerController.instance.currentHorizontalSpeed * parallexEffect;
 
-    public void Prepare()
-    {
-        if (originalPositions == null) SavePositions();
+        float newpos = transform.position.x + dist;
 
-        for (int i = 0; i < layers.Count; i++)
+        if (newpos > startpos + length)
         {
-            layers[i].localPosition = originalPositions[i];
+            newpos -= length;
         }
-    }
-
-    void Update()
-    {
-        for (int i = 0; i < layers.Count; i++)
+        else if (newpos < startpos - length)
         {
-            layers[i].transform.localPosition -= Vector3.right * PlayerController.instance.currentHorizontalSpeed/speeds[i];
+            newpos += length;
         }
+        transform.position = new Vector3(newpos, transform.position.y, transform.position.z);
     }
 }
