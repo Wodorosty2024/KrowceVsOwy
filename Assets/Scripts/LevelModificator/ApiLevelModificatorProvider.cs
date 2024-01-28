@@ -62,10 +62,11 @@ public class ApiLevelModificatorProvider : BaseLevelModificator
 
         try
         {
-            var result = UnityWebRequest.Post(PostMapElementsEndpoint, json, "application/json");
+            var result = UnityWebRequest.Post(PostMapElementsEndpoint, json, "application/json").SendWebRequest();
             var time = Time.time;
-            while (!result.isDone) {
-                if (Time.time-time > timeoutLimit) return;
+            while (!result.isDone)
+            {
+                if (Time.time - time > timeoutLimit) return;
             }
         }
         catch (Exception e)
@@ -80,7 +81,7 @@ public class ApiLevelModificatorProvider : BaseLevelModificator
 
         try
         {
-            var result = UnityWebRequest.Post(PostMapElementEndpoint, json, "application/json");
+            var result = UnityWebRequest.Post(PostMapElementEndpoint, json, "application/json").SendWebRequest();
             var time = Time.time;
             while (!result.isDone)
             {

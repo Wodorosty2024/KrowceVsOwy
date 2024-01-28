@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9081bbc9c93e94a4884a528ffb41f363
+guid: 6c7414515384e4340be45e331e91b3cd
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -30,7 +30,7 @@ ScriptedImporter:
     ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
-    spriteMode: 2
+    spriteMode: 1
     spriteExtrude: 1
     spriteMeshType: 1
     alignment: 0
@@ -71,18 +71,18 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   spriteImportData:
-  - name: 
+  - name: broken fence_1
     originalName: 
-    pivot: {x: 0, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 0
       y: 0
-      width: 0
-      height: 0
-    spriteID: 
+      width: 1038
+      height: 613
+    spriteID: d84c1239a256943479c225cf6335d143
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -94,49 +94,7 @@ ScriptedImporter:
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
   rigSpriteImportData:
-  - name: flower
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 1896
-      width: 359
-      height: 116
-    spriteID: abc7ca2fbf86e47919819bf7f5bdd817
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 1896}
-    spritePosition: {x: 277, y: 138}
-  - name: 'light '
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 0
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 1045
-      width: 714
-      height: 843
-    spriteID: 7e7b4b20185514c0cbd0e6f8a269d647
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 1045}
-    spritePosition: {x: 181, y: 130}
-  - name: grave
+  - name: broken fence
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 0
@@ -145,9 +103,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 934
-      height: 1033
-    spriteID: 91cbdb0cd951640c3b8006e12af4ee28
+      width: 1038
+      height: 613
+    spriteID: fdff53e1e1f1c4693bb74b6d3366dc11
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -251,42 +209,12 @@ ScriptedImporter:
   resliceFromLayer: 0
   mosaicPSDLayers: []
   rigPSDLayers:
-  - name: grave
-    spriteName: 
-    isGroup: 1
+  - name: broken fence
+    spriteName: broken fence
+    isGroup: 0
     parentIndex: -1
-    spriteID: 9a482102e1bb547c6bef01629a51d1fa
-    layerID: 6
-    mosaicPosition: {x: 0, y: 0}
-    flatten: 0
-    isImported: 0
-    isVisible: 1
-  - name: flower
-    spriteName: flower
-    isGroup: 0
-    parentIndex: 0
-    spriteID: abc7ca2fbf86e47919819bf7f5bdd817
-    layerID: 5
-    mosaicPosition: {x: 4, y: 1896}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: 'light '
-    spriteName: 'light '
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 7e7b4b20185514c0cbd0e6f8a269d647
-    layerID: 4
-    mosaicPosition: {x: 4, y: 1045}
-    flatten: 0
-    isImported: 1
-    isVisible: 1
-  - name: grave
-    spriteName: grave
-    isGroup: 0
-    parentIndex: 0
-    spriteID: 91cbdb0cd951640c3b8006e12af4ee28
-    layerID: 3
+    spriteID: fdff53e1e1f1c4693bb74b6d3366dc11
+    layerID: 2
     mosaicPosition: {x: 4, y: 4}
     flatten: 0
     isImported: 1

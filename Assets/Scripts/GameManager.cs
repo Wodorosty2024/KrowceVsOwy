@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         LoadLevelElements();
         var obj = SpawnLane(null);
         var bounds = obj.GetComponentInChildren<Renderer>().bounds;
-        obj.transform.position = Vector3.zero + Vector3.right * bounds.extents.x;
+        obj.transform.position = Vector3.zero - Vector3.right * bounds.extents.x;
         SpawnLane(obj.GetComponentInChildren<Renderer>());
     }
 
@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
             user = PlayerPrefs.GetString("username", "Player"),
             session = PlayerPrefs.GetString("session", "default"),
         };
-        levelModificatorProvider.SaveNewElement(model);
+        levelModificatorProvider.SaveNewElement(model); // meow
         previewObject = null;
     }
 

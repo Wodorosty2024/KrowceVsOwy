@@ -217,6 +217,7 @@ MonoBehaviour:
   description: Have to be jumped over
   userName: 
   userComment: 
+  requireFeetContact: 1
   isActive: 1
 --- !u!114 &6508178363419173682
 MonoBehaviour:
