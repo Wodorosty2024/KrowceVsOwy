@@ -51,7 +51,7 @@ public class GameUI : MonoBehaviour
         foreach (var tuple in PlayerController.instance.encounteredElements)
         {
             var obj = Instantiate(summaryEntryPrefab, Vector3.zero, Quaternion.identity, summaryContainer).GetComponent<EncounteredMapElementEntry>();
-            obj.summaryText.text = $"{tuple.element.userName} {(tuple.element.mapElementType == DynamicallyLoadedLevelElement.MapElementType.Obstacle ? "tricked you with" : "helped you with ")} {tuple.element.ui_name} at {tuple.distance}.\nTheir message:";
+            obj.summaryText.text = $"{tuple.element.userName} {(tuple.element.mapElementType == DynamicallyLoadedLevelElement.MapElementType.Obstacle ? "tricked you with" : "helped you with ")} {tuple.element.ui_name} at {tuple.distance.ToString("F2")}.\nTheir message:";
             obj.username.text = tuple.element.userName;
             obj.message.text = tuple.element.userComment;
         }

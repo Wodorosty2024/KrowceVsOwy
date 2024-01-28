@@ -55,7 +55,11 @@ public class DynamicallyLoadedLevelElement : MonoBehaviour
     public virtual void HandleCollision(PlayerController pc)
     {
         if (!string.IsNullOrEmpty(userName))
-            PlayerController.instance.encounteredElements.Add((PlayerController.instance.accumulatedDistance, this));
+        {
+            var dist = PlayerController.instance.accumulatedDistance;
+            if (!PlayerController.instance.encounteredElements.Contains((dist,this)))
+                PlayerController.instance.encounteredElements.Add((dist, this));
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)

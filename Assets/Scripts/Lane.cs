@@ -31,6 +31,8 @@ public class Lane : MonoBehaviour
                 continue;
             }
             var obj = Instantiate(refObj, new Vector3(element.x, element.y, -1), Quaternion.identity, obstaclesContainer);
+            obj.userName = element.user;
+            obj.userComment=element.sentence;
             obj.name+="_UG";
         }
             SpawnRandomObstacles();
