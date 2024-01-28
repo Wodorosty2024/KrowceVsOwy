@@ -130,7 +130,8 @@ public class GameManager : MonoBehaviour
             user = PlayerPrefs.GetString("username", "Player"),
             session = PlayerPrefs.GetString("session", "default"),
             disables = referencedObject,
-            lane = lane.id
+            lane = lane.id,
+            score = PlayerController.instance.accumulatedDistance
         };
         levelModificatorProvider.SaveNewElement(model); // meow
         previewObject = null;

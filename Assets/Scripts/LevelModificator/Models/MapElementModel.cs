@@ -12,4 +12,6 @@ public struct MapElementModel
     public string session;
 
     public string disables;
+
+    public float score;
 }
