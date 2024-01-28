@@ -188,7 +188,7 @@ MonoBehaviour:
   id: 
   key: poo
   ui_name: Poop
-  description: Slows you down
+  description: Will cause you to slip and die
   userName: 
   userComment: 
   requireFeetContact: 1

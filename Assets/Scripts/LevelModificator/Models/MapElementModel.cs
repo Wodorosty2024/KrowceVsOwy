@@ -14,4 +14,7 @@ public struct MapElementModel
     public string disables;
 
     public float score;
+
+    public int likes;
+    public int dislikes;
 }

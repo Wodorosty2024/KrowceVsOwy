@@ -20,9 +20,10 @@ public class GameUI : MonoBehaviour
     public TextMeshProUGUI runInfoDistance;
     public TextMeshProUGUI runInfoMilkCounter;
     public GameObject gameOverPanel;
-    public GameObject summaryScrollView;
+    public GameObject summaryTab;
     public Transform summaryContainer;
     public GameObject summaryEntryPrefab;
+    public TextMeshProUGUI summaryTotalDistance;
     public GameObject objectPlacementPanel;
     public GameObject messagePanel;
     public GameObject restartPanel;
@@ -47,13 +48,14 @@ public class GameUI : MonoBehaviour
     {
         gameOverPanel.SetActive(true);
         runInfoContainer.SetActive(false);
-        summaryScrollView.SetActive(PlayerController.instance.encounteredElements.Count > 0);
+        summaryTab.SetActive(PlayerController.instance.encounteredElements.Count > 0);
+        summaryTotalDistance.text = $"Total distance {PlayerController.instance.accumulatedDistance}m";
         foreach (var tuple in PlayerController.instance.encounteredElements.Values)
         {
             var obj = Instantiate(summaryEntryPrefab, Vector3.zero, Quaternion.identity, summaryContainer).GetComponent<EncounteredMapElementEntry>();
-            obj.summaryText.text = $"{tuple.element.userName} {(tuple.element.mapElementType == DynamicallyLoadedLevelElement.MapElementType.Obstacle ? "tricked you with" : "helped you with")} {tuple.element.ui_name} at {tuple.distance.ToString("F2")}.\nTheir message:";
-            obj.username.text = tuple.element.userName;
-            obj.message.text = tuple.element.userComment;
+            obj.summaryText.text = $"{tuple.element.userName} {(tuple.element.mapElementType == DynamicallyLoadedLevelElement.MapElementType.Obstacle ? "tricked you with" : "helped you with")} {tuple.element.ui_name} when you passed {tuple.distance.ToString("F2")}m.\n";
+            obj.username.text = $"- {tuple.element.userName}";
+            obj.message.text = $"„{tuple.element.userComment}”";
         }
     }
 

@@ -16,7 +16,7 @@ public class Fence : DynamicallyLoadedLevelElement
             pc.health--;
             if (pc.health <= 0)
             {
-                pc.Die(true, gameObject);
+                 pc.Die(true, gameObject);
             }
             else
             {

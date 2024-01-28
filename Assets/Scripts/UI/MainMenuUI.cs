@@ -14,6 +14,10 @@ public class MainMenuUI : MonoBehaviour
     public TMP_Dropdown teamSelection;
     public TMP_Dropdown sessionSelection;
 
+    public List<DynamicallyLoadedLevelElement> elements;
+    public UIItem itemPrefab;
+    public Transform itemContainer;
+
     public string baseUrl = "https://krowce.bieda.it/api";
     string GetSessionsEndpoint => $"{baseUrl}/sessions/?format=json";
     string GetUsersEndpoint => $"{baseUrl}/users/?format=json";
@@ -31,6 +35,14 @@ public class MainMenuUI : MonoBehaviour
         LoadUserOptions(teamSelection);
         var teamIndex = teamSelection.options.FindIndex(option => option.text == PlayerPrefs.GetString("team", "Krowy"));
         teamSelection.value = teamIndex;
+
+        foreach (var item in elements)
+        {
+            var obj = Instantiate(itemPrefab.gameObject, Vector3.zero, Quaternion.identity, itemContainer).GetComponent<UIItem>();
+            obj.description.text = item.description;
+            obj.title.text = item.name;
+            obj.image.sprite = item.GetComponentInChildren<SpriteRenderer>().sprite;
+        }
     }
     void LoadUserOptions(TMP_Dropdown dropdown)
     {

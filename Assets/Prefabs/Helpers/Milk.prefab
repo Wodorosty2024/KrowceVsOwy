@@ -205,12 +205,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632ec62603847479f8d3499fe8325161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowRandomGeneration: 1
+  allowRandomGeneration: 0
   mapElementType: 1
   id: 
   key: milk
   ui_name: Milk
-  description: Will make you strong enough to bash through a fence
+  description: Will make you strong enough to run through a fence
   userName: 
   userComment: 
   requireFeetContact: 0
